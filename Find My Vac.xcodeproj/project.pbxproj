@@ -14,6 +14,8 @@
 		102A0B2B1DAAA866007A4DD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 102A0B2A1DAAA866007A4DD0 /* Assets.xcassets */; };
 		102A0B2E1DAAA866007A4DD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102A0B2C1DAAA866007A4DD0 /* LaunchScreen.storyboard */; };
 		102A0B391DAAA866007A4DD0 /* Find_My_VacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B381DAAA866007A4DD0 /* Find_My_VacTests.swift */; };
+		102A0B4A1DAAD71C007A4DD0 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B491DAAD71C007A4DD0 /* InputViewController.swift */; };
+		102A0B4C1DAAD72E007A4DD0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		102A0B341DAAA866007A4DD0 /* Find My VacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Find My VacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		102A0B381DAAA866007A4DD0 /* Find_My_VacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Find_My_VacTests.swift; sourceTree = "<group>"; };
 		102A0B3A1DAAA866007A4DD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		102A0B491DAAD71C007A4DD0 /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				102A0B2C1DAAA866007A4DD0 /* LaunchScreen.storyboard */,
 				102A0B2F1DAAA866007A4DD0 /* Info.plist */,
 				102A0B271DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld */,
+				102A0B491DAAD71C007A4DD0 /* InputViewController.swift */,
+				102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */,
 			);
 			path = "Find My Vac";
 			sourceTree = "<group>";
@@ -202,9 +208,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				102A0B4C1DAAD72E007A4DD0 /* ResultViewController.swift in Sources */,
 				102A0B231DAAA866007A4DD0 /* ViewController.swift in Sources */,
 				102A0B211DAAA866007A4DD0 /* AppDelegate.swift in Sources */,
 				102A0B291DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld in Sources */,
+				102A0B4A1DAAD71C007A4DD0 /* InputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
