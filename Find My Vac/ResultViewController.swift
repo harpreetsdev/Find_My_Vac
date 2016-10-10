@@ -10,11 +10,21 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
+    @IBAction func dismissButtonTap(_ sender: UIButton) {
+       self.dismiss(animated: true, completion: nil)
+    }
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var numberLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    
 
         // Do any additional setup after loading the view.
-    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
