@@ -10,6 +10,10 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var livingAreaSizePickerView: UIPickerView!
+    //@IBOutlet weak var petPickerView: UIPickerView!
+    @IBOutlet weak var woodenFloorPickerView: UIPickerView!
+    @IBOutlet weak var hardwoodPickerView: UIPickerView!
     @IBOutlet weak var petTextField: UITextField!
     @IBOutlet weak var livingAreaTextField: UITextField!
     @IBOutlet weak var livingAreaPickerView: UIPickerView!
@@ -33,6 +37,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
 //        livingAreaPickerView.dataSource = self
         // Do any additional setup after loading the view.
         
+        //view.backgroundColor = UIColor(red: 32, green: 125, blue: 140, alpha: 1)
         
     }
     
