@@ -43,7 +43,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WoodenFloor%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wG-zo-Omp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Carpet%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wG-zo-Omp">
                                 <frame key="frameInset" minX="16" minY="281" width="140" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -77,7 +77,7 @@
                                 <frame key="frameInset" minX="205" minY="190" height="45" maxX="53"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <pickerView tag="2" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-62-Dbm" userLabel="Wooden Floor Picker view">
+                            <pickerView tag="2" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-62-Dbm" userLabel="Carpet Picker view">
                                 <frame key="frameInset" minX="205" minY="280" height="45" maxX="53"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
@@ -109,11 +109,11 @@
                         <color key="backgroundColor" red="0.14509803921568629" green="0.40784313725490196" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="carpetPickerView" destination="DBk-62-Dbm" id="DGw-Hf-aF2"/>
                         <outlet property="hardwoodPickerView" destination="D2B-WJ-aDs" id="giP-vq-L38"/>
                         <outlet property="livingAreaSizePickerView" destination="zaY-qP-2Ih" id="Kpr-Lr-Apa"/>
                         <outlet property="petPickerView" destination="qVe-bM-ePs" id="owl-Yq-o7A"/>
                         <outlet property="submitButton" destination="KOd-Ts-NaX" id="onu-5y-cK0"/>
-                        <outlet property="woodenFloorPickerView" destination="DBk-62-Dbm" id="ggv-UG-jfE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Q3-Gn-0vl" userLabel="First Responder" sceneMemberID="firstResponder"/>

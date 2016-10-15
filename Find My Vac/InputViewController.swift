@@ -10,9 +10,9 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var carpetPickerView: UIPickerView!
     @IBOutlet weak var livingAreaSizePickerView: UIPickerView!
     //@IBOutlet weak var petPickerView: UIPickerView!
-    @IBOutlet weak var woodenFloorPickerView: UIPickerView!
     @IBOutlet weak var hardwoodPickerView: UIPickerView!
     @IBOutlet weak var petTextField: UITextField!
     @IBOutlet weak var livingAreaTextField: UITextField!
@@ -22,23 +22,50 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     @IBOutlet weak var woodenFloorPercent: UITextField!
     var vacuumType:String?
     var petArray = ["YES","NO"]
+    var livingSpaceArray = ["Small","Medium","Large"]
     var total : Double = 0.0 
     @IBOutlet weak var submitButton: UIButton!
     var pet:String?
     var finalString:String?
+    var woodFloorPercentArray:[Int]=[]
+    var carpetPercentArray:[Int]=[]
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        hardwoodPercent.delegate = self
-        woodenFloorPercent.delegate = self
+        carpetPickerView.delegate = self
+        carpetPickerView.dataSource = self
+        hardwoodPickerView.dataSource = self
+        hardwoodPickerView.dataSource = self
         petPickerView.delegate = self
-        //livingAreaPickerView.delegate = self
         petPickerView.dataSource = self
+        livingAreaSizePickerView.delegate = self
+        livingAreaSizePickerView.dataSource = self
+        
+        //hardwoodPercent.delegate = self
+        //woodenFloorPercent.delegate = self
+        //petPickerView.delegate = self
+        //livingAreaPickerView.delegate = self
+        //petPickerView.dataSource = self
 //        livingAreaPickerView.dataSource = self
         // Do any additional setup after loading the view.
         
         //view.backgroundColor = UIColor(red: 32, green: 125, blue: 140, alpha: 1)
+        setUpOutlets()
         
+    }
+    
+    func setUpOutlets() {
+    woodFloorPercentArray = createPercentArrays()
+    carpetPercentArray = createPercentArrays()
+    }
+    
+    func createPercentArrays() -> [Int]{
+        var resultArray:[Int]=[]
+        
+        for i:Int in 0..<101 {
+        resultArray.append(i)
+        }
+        return resultArray
     }
     
 //    var pet : Bool {
@@ -62,13 +89,12 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         //woodenFloorPercent.resignFirstResponder()
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return petArray[row]
-    }
     
 //    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
 //        return ""//pickerDataSource[component][row]
@@ -128,22 +154,64 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         
     }
     
+
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        switch pickerView.tag {
+        case 1:
+            return woodFloorPercentArray.count
+        case 2:
+            return carpetPercentArray.count
+        case 3:
+             return petArray.count
+        case 4:
+             return livingSpaceArray.count
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView.tag {
+        case 1:
+            return woodFloorPercentArray[row].description
+        case 2:
+            return carpetPercentArray[row].description
+        case 3:
+            return petArray[row]
+        case 4:
+            return livingSpaceArray[row]
+
+        default:
+            return "NOTHING"
+        }
+    }
+    
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-      return 1
+        return 1
     }
     
     
     // returns the # of rows in each component..
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-     return petArray.count
+        switch pickerView.tag {
+        case 1:
+            return woodFloorPercentArray.count
+        case 2:
+            return carpetPercentArray.count
+        case 3:
+            return petArray.count
+        case 4:
+            return livingSpaceArray.count
+
+        default:
+            return 0
+        }
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
 
     
     // MARK: - Navigation
