@@ -10,10 +10,11 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var searchPageLabel: UILabel!
+    @IBOutlet weak var hardwoodFloorPickerView: UIPickerView!
     @IBOutlet weak var carpetPickerView: UIPickerView!
     @IBOutlet weak var livingAreaSizePickerView: UIPickerView!
     //@IBOutlet weak var petPickerView: UIPickerView!
-    @IBOutlet weak var hardwoodPickerView: UIPickerView!
     @IBOutlet weak var petTextField: UITextField!
     @IBOutlet weak var livingAreaTextField: UITextField!
     @IBOutlet weak var livingAreaPickerView: UIPickerView!
@@ -21,7 +22,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     @IBOutlet weak var hardwoodPercent: UITextField!
     @IBOutlet weak var woodenFloorPercent: UITextField!
     var vacuumType:String?
-    var petArray = ["YES","NO"]
+    var petArray = ["Yes","No"]
     var livingSpaceArray = ["Small","Medium","Large"]
     var total : Double = 0.0 
     @IBOutlet weak var submitButton: UIButton!
@@ -29,17 +30,21 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var finalString:String?
     var woodFloorPercentArray:[Int]=[]
     var carpetPercentArray:[Int]=[]
+    
+    
     override func viewDidLoad() {
     
-        super.viewDidLoad()
+    super.viewDidLoad()
+        
+        hardwoodFloorPickerView.dataSource = self
+        hardwoodFloorPickerView.dataSource = self
         carpetPickerView.delegate = self
         carpetPickerView.dataSource = self
-        hardwoodPickerView.dataSource = self
-        hardwoodPickerView.dataSource = self
         petPickerView.delegate = self
         petPickerView.dataSource = self
         livingAreaSizePickerView.delegate = self
         livingAreaSizePickerView.dataSource = self
+        
         
         //hardwoodPercent.delegate = self
         //woodenFloorPercent.delegate = self
@@ -51,15 +56,30 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         
         //view.backgroundColor = UIColor(red: 32, green: 125, blue: 140, alpha: 1)
         setUpOutlets()
-        
     }
     
     func setUpOutlets() {
-    woodFloorPercentArray = createPercentArrays()
-    carpetPercentArray = createPercentArrays()
+        woodFloorPercentArray = createPercentArray()
+        carpetPercentArray = createPercentArray()
+        self.carpetPickerView.backgroundColor = UIColor(red: 62, green: 237, blue: 255, alpha: 1)
+        carpetPickerView.layer.cornerRadius = 8
+        carpetPickerView.clipsToBounds = true
+        
+        searchPageLabel.layer.cornerRadius = 8
+        searchPageLabel.clipsToBounds = true
+        
+        submitButton.backgroundColor = UIColor(red: 62, green: 237, blue: 255, alpha: 1)
+        submitButton.layer.cornerRadius = 8
+        submitButton.clipsToBounds = true
     }
     
-    func createPercentArrays() -> [Int]{
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        
+    print(woodFloorPercentArray[row].description)
+}
+
+    
+    func createPercentArray() -> [Int]{
         var resultArray:[Int]=[]
         
         for i:Int in 0..<101 {
@@ -79,7 +99,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
 //        return true
 //        }
 //    }
-//    
+//  
+    
     func addNumbers (a:Double, b:Double) -> Double {
        return a+b
     }
@@ -157,9 +178,10 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         
-        switch pickerView.tag {
+        switch pickerView.tag
+        {
         case 1:
-            return woodFloorPercentArray.count
+            return createPercentArray().count
         case 2:
             return carpetPercentArray.count
         case 3:
@@ -172,11 +194,13 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch pickerView.tag {
+        
+        switch pickerView.tag
+        {
         case 1:
-            return woodFloorPercentArray[row].description
+            return createPercentArray()[row].description
         case 2:
-            return carpetPercentArray[row].description
+            return createPercentArray()[row].description
         case 3:
             return petArray[row]
         case 4:
@@ -210,6 +234,14 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         }
         
     }
+    
+    public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 30
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 150
+    }
 
 
 
@@ -239,7 +271,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
                 
             }
 
-        }
+          }
         }
     
     }
