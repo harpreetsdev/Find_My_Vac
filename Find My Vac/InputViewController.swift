@@ -10,6 +10,7 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var backgroundImgView: UIImageView!
     @IBOutlet weak var searchPageLabel: UILabel!
     @IBOutlet weak var hardwoodFloorPickerView: UIPickerView!
     @IBOutlet weak var carpetPickerView: UIPickerView!
@@ -59,12 +60,13 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     }
     
     func setUpOutlets() {
+        
         woodFloorPercentArray = createPercentArray()
         carpetPercentArray = createPercentArray()
         self.carpetPickerView.backgroundColor = UIColor(red: 62, green: 237, blue: 255, alpha: 1)
         carpetPickerView.layer.cornerRadius = 8
         carpetPickerView.clipsToBounds = true
-        
+        carpetPickerView.showsSelectionIndicator = true
         searchPageLabel.layer.cornerRadius = 8
         searchPageLabel.clipsToBounds = true
         
@@ -236,7 +238,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     }
     
     public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30
+        return 15
     }
     
     public func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
@@ -255,15 +257,15 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             
             if let destinationVC = segue.destination as? ResultViewController {
                 
-                let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
+                //let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
            
-              let num2 = NSString.init(string: woodenFloorPercent.text!).doubleValue
-              let  finalString = returnVacuumType(hardwood:num2, carpet:num1,pet:petTextField.text!,livingSpace:livingAreaTextField.text!)
+              //let num2 = NSString.init(string: woodenFloorPercent.text!).doubleValue
+              //let  finalString = returnVacuumType(hardwood:num2, carpet:num1,pet:petTextField.text!,livingSpace:livingAreaTextField.text!)
               //destinationVC.numberLabel.text = total.description
               //destinationVC.textLabel.text = finalString
                 //self.prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
-                print(finalString)
-                print("TOTAL =\(total)")
+                //print(finalString)
+                //print("TOTAL =\(total)")
                 
             
                  //
