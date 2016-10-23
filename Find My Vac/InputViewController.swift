@@ -81,11 +81,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         
     }
     
-    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-      // print(carpetPercentArray[row].description)
-}
-
-    
     func createPercentArray() -> [Int]{
         var resultArray:[Int]=[]
         
@@ -95,52 +90,30 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         return resultArray
     }
     
-//    var pet : Bool {
-//        set{
-//         self.pet = false
-//        }
-//        get{
-//            if petPickerView.isEqual("YES") {
-//            //self.pet = true
-//            }
-//        return true
-//        }
-//    }
-//  
-    
-    func addNumbers (a:Double, b:Double) -> Double {
-       return a+b
+    func calculateTotal(woodenPercent:Int, carpetPercent:Int, pet:Int, livingAreaSpace:Int)->Int{
+        
+        var total:Int=0
+        total = woodenPercent+carpetPercent
+        if pet==0 {
+            total += 30
+        }
+        if livingAreaSpace==1 {
+            total += 25
+        }
+        else if livingAreaSpace==2 {
+            total += 55
+        }
+        
+        return total
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //hardwoodPercent.resignFirstResponder()
-        //woodenFloorPercent.resignFirstResponder()
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-//        return ""//pickerDataSource[component][row]
-//    }
-    
-     func returnVacuumType(hardwood:Double, carpet:Double, pet:String, livingSpace:String) -> String {
+
+    func returnVacuumType(hardwood:Double, carpet:Double, pet:String, livingSpace:String) -> String {
         if total == total {
             total = hardwood + carpet}
-        //vacuumType = ""
-        //var type = String()
-//        if petPickerView.isEqual("YES") {
-//         total! += 20.0
-//            
-//        }
-//
+        
         //self.pet = pet
         if petTextField.text! == "yes" {
-          total += 20.0
+            total += 20.0
         }
         if livingAreaTextField.text! == "Small" {
             total += 10
@@ -159,34 +132,25 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
                 vacuumType = "Large range suggested, you lucky bastard"
             }
         }
-    
+        
         return vacuumType!
     }
 
-
+    func addNumbers (a:Double, b:Double) -> Double {
+       return a+b
+    }
+    
     @IBAction func submitButtonTap(_ sender: UIButton) {
     // print(hardwoodFloorPickerView.selectedRow(inComponent: 0))
     
     let returnedTotal = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
         
     print(returnedTotal)
-//        let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
-//        //        print("NUMBER 1 = \(num1)")
-//        let num2 = NSString.init(string: woodenFloorPercent.text!).doubleValue
-//        //let total = addNumbers(a: NSString.init(string: hardwoodPercent.text!).doubleValue, b: NSString.init(string: woodenFloorPercent.text!).doubleValue)
-//        
-//        if  finalString == finalString {
-//            finalString = returnVacuumType(hardwood:num2, carpet:num1,pet:petTextField.text!,livingSpace:livingAreaTextField.text!)
-//            
-//            //self.prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
-//            print(finalString)
-//            print("TOTAL =\(total)")
-//        }
-//
         
     }
     
-
+    //Mark: Picker view delegate and datasource methods.
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         
         switch pickerView.tag
@@ -226,37 +190,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         return 1
     }
     
-    func calculateTotal(woodenPercent:Int, carpetPercent:Int, pet:Int, livingAreaSpace:Int)->Int{
-//        var total:Int=0
-//        total = hardwoodFloorPickerView.selectedRow(inComponent: 0)+carpetPickerView.selectedRow(inComponent: 0)
-//        if petPickerView.selectedRow(inComponent: 0)==0 {
-//            total += 20
-//        }
-//        if petPickerView.selectedRow(inComponent: 0)==1 {
-//            total += 25
-//        }
-//        else if petPickerView.selectedRow(inComponent: 0)==2 {
-//            total += 55
-//        }
-//        
-//        return total
-        
-        var total:Int=0
-        total = woodenPercent+carpetPercent
-        if pet==0 {
-            total += 30
-        }
-        if livingAreaSpace==1 {
-            total += 25
-        }
-        else if livingAreaSpace==2 {
-            total += 55
-        }
-        
-        return total
-    }
-    
-    
     // returns the # of rows in each component..
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -284,8 +217,9 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         return 150
     }
 
-
-
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        // print(carpetPercentArray[row].description)
+    }
     
     // MARK: - Navigation
 
@@ -314,6 +248,18 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
 
           }
         }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //hardwoodPercent.resignFirstResponder()
+        //woodenFloorPercent.resignFirstResponder()
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     
     }
   
