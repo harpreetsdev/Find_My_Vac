@@ -37,31 +37,25 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     super.viewDidLoad()
         
-        hardwoodFloorPickerView.delegate = self
-        hardwoodFloorPickerView.dataSource = self
-        carpetPickerView.delegate = self
-        carpetPickerView.dataSource = self
-        petPickerView.delegate = self
-        petPickerView.dataSource = self
-        livingAreaSizePickerView.delegate = self
-        livingAreaSizePickerView.dataSource = self
         
         
-        //hardwoodPercent.delegate = self
-        //woodenFloorPercent.delegate = self
-        //petPickerView.delegate = self
-        //livingAreaPickerView.delegate = self
-        //petPickerView.dataSource = self
-//        livingAreaPickerView.dataSource = self
-        // Do any additional setup after loading the view.
-        
-        //view.backgroundColor = UIColor(red: 32, green: 125, blue: 140, alpha: 1)
         setUpOutlets()
     }
     
     func setUpOutlets() {
         
-        //view.addSubview(samplePickerView)
+        hardwoodFloorPickerView.delegate = self
+        hardwoodFloorPickerView.dataSource = self
+        
+        carpetPickerView.delegate = self
+        carpetPickerView.dataSource = self
+        
+        petPickerView.delegate = self
+        petPickerView.dataSource = self
+        
+        livingAreaSizePickerView.delegate = self
+        livingAreaSizePickerView.dataSource = self
+        
         carpetPickerView.backgroundColor = UIColor.red
         woodFloorPercentArray = createPercentArray()
         carpetPercentArray = createPercentArray()
@@ -76,12 +70,11 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         submitButton.layer.cornerRadius = 8
         submitButton.clipsToBounds = true
         submitButton.setBackgroundImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
-        //submitButton.setImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
-        
         
     }
     
-    func createPercentArray() -> [Int]{
+    //Mark: Helper methods.
+    func createPercentArray()->[Int]{
         var resultArray:[Int]=[]
         
         for i:Int in 0..<101 {
