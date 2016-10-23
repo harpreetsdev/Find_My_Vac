@@ -9,6 +9,9 @@
 import UIKit
 
 class ResultTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBAction func backButtonTap(_ sender: UIButton) {
+    self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var uprightVacuumTableView: UITableView!
     @IBOutlet weak var handVaccumTabelView: UITableView!
     @IBOutlet weak var canisterVacuumTableView: UITableView!
