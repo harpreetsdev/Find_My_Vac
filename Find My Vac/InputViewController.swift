@@ -37,7 +37,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     super.viewDidLoad()
         
-        hardwoodFloorPickerView.dataSource = self
+        hardwoodFloorPickerView.delegate = self
         hardwoodFloorPickerView.dataSource = self
         carpetPickerView.delegate = self
         carpetPickerView.dataSource = self
@@ -61,6 +61,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     func setUpOutlets() {
         
+        //view.addSubview(samplePickerView)
+        carpetPickerView.backgroundColor = UIColor.red
         woodFloorPercentArray = createPercentArray()
         carpetPercentArray = createPercentArray()
         self.carpetPickerView.backgroundColor = UIColor(red: 62, green: 237, blue: 255, alpha: 1)
@@ -70,14 +72,17 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         searchPageLabel.layer.cornerRadius = 8
         searchPageLabel.clipsToBounds = true
         
-        submitButton.backgroundColor = UIColor(red: 62, green: 237, blue: 255, alpha: 1)
+        submitButton.backgroundColor = UIColor.clear
         submitButton.layer.cornerRadius = 8
         submitButton.clipsToBounds = true
+        submitButton.setBackgroundImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
+        //submitButton.setImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
+        
+        
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        
-    print(woodFloorPercentArray[row].description)
+      // print(carpetPercentArray[row].description)
 }
 
     
@@ -160,7 +165,11 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
 
 
     @IBAction func submitButtonTap(_ sender: UIButton) {
+    // print(hardwoodFloorPickerView.selectedRow(inComponent: 0))
     
+    let returnedTotal = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
+        
+    print(returnedTotal)
 //        let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
 //        //        print("NUMBER 1 = \(num1)")
 //        let num2 = NSString.init(string: woodenFloorPercent.text!).doubleValue
@@ -215,6 +224,36 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
+    }
+    
+    func calculateTotal(woodenPercent:Int, carpetPercent:Int, pet:Int, livingAreaSpace:Int)->Int{
+//        var total:Int=0
+//        total = hardwoodFloorPickerView.selectedRow(inComponent: 0)+carpetPickerView.selectedRow(inComponent: 0)
+//        if petPickerView.selectedRow(inComponent: 0)==0 {
+//            total += 20
+//        }
+//        if petPickerView.selectedRow(inComponent: 0)==1 {
+//            total += 25
+//        }
+//        else if petPickerView.selectedRow(inComponent: 0)==2 {
+//            total += 55
+//        }
+//        
+//        return total
+        
+        var total:Int=0
+        total = woodenPercent+carpetPercent
+        if pet==0 {
+            total += 30
+        }
+        if livingAreaSpace==1 {
+            total += 25
+        }
+        else if livingAreaSpace==2 {
+            total += 55
+        }
+        
+        return total
     }
     
     
