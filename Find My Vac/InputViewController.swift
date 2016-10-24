@@ -36,10 +36,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     override func viewDidLoad() {
     
     super.viewDidLoad()
-        
-        
-        
-        setUpOutlets()
+    setUpOutlets()
     }
     
     func setUpOutlets() {
@@ -200,6 +197,40 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             return 0
         }
         
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView{
+        let label = UILabel()
+        var data = Int()
+        switch pickerView.tag {
+        case 1:
+            let title = NSAttributedString(string: createPercentArray()[row].description, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightBold)])
+            label.attributedText = title
+            label.textAlignment = NSTextAlignment.center
+            return label
+        case 2:
+            let title = NSAttributedString(string: createPercentArray()[row].description, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightBold)])
+            label.attributedText = title
+            label.textAlignment = NSTextAlignment.center
+            return label
+        case 3:
+            let title = NSAttributedString(string: petArray[row], attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightBold)])
+            label.attributedText = title
+            label.textAlignment = NSTextAlignment.center
+            return label
+
+        case 4:
+            let title = NSAttributedString(string: livingSpaceArray[row], attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightBold)])
+            label.attributedText = title
+            label.textAlignment = NSTextAlignment.center
+            return label
+
+        default:
+            data = 0
+        }
+        
+        return label
+
     }
     
     public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
