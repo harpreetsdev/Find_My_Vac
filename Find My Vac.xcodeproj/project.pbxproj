@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10053C351DC1251500355F9A /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10053C341DC1251500355F9A /* ServiceFactory.swift */; };
 		102A0B211DAAA866007A4DD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B201DAAA866007A4DD0 /* AppDelegate.swift */; };
 		102A0B231DAAA866007A4DD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B221DAAA866007A4DD0 /* ViewController.swift */; };
 		102A0B261DAAA866007A4DD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102A0B241DAAA866007A4DD0 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10053C341DC1251500355F9A /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		102A0B1D1DAAA866007A4DD0 /* Find My Vac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find My Vac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		102A0B201DAAA866007A4DD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		102A0B221DAAA866007A4DD0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				102A0B2F1DAAA866007A4DD0 /* Info.plist */,
 				102A0B201DAAA866007A4DD0 /* AppDelegate.swift */,
 				102A0B271DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld */,
+				10053C341DC1251500355F9A /* ServiceFactory.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				102A0B231DAAA866007A4DD0 /* ViewController.swift in Sources */,
 				5EFB881F1DB6C165002A691D /* ResultTableViewController.swift in Sources */,
 				102A0B211DAAA866007A4DD0 /* AppDelegate.swift in Sources */,
+				10053C351DC1251500355F9A /* ServiceFactory.swift in Sources */,
 				102A0B291DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld in Sources */,
 				102A0B4A1DAAD71C007A4DD0 /* InputViewController.swift in Sources */,
 			);
