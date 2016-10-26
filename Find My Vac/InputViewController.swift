@@ -29,8 +29,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     @IBOutlet weak var submitButton: UIButton!
     var pet:String?
     var finalString:String?
-    var woodFloorPercentArray:[Int]=[]
-    var carpetPercentArray:[Int]=[]
+  
     
     
     override func viewDidLoad() {
@@ -54,8 +53,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         livingAreaSizePickerView.dataSource = self
         
         carpetPickerView.backgroundColor = UIColor.red
-        woodFloorPercentArray = createPercentArray()
-        carpetPercentArray = createPercentArray()
         self.carpetPickerView.backgroundColor = UIColor(red: 62, green: 237, blue: 255, alpha: 1)
         carpetPickerView.layer.cornerRadius = 8
         carpetPickerView.clipsToBounds = true
@@ -162,7 +159,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         case 1:
             return createPercentArray().count
         case 2:
-            return carpetPercentArray.count
+            return createPercentArray().count
         case 3:
              return petArray.count
         case 4:
@@ -199,9 +196,9 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
         case 1:
-            return woodFloorPercentArray.count
+            return createPercentArray().count
         case 2:
-            return carpetPercentArray.count
+            return createPercentArray().count
         case 3:
             return petArray.count
         case 4:
@@ -215,7 +212,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView{
         let label = UILabel()
-        var data = Int()
         switch pickerView.tag {
         case 1:
             let title = NSAttributedString(string: createPercentArray()[row].description, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightBold)])
@@ -240,10 +236,9 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             return label
 
         default:
-            data = 0
+            return label
         }
         
-        return label
 
     }
     
