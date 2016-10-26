@@ -18,7 +18,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     //@IBOutlet weak var petPickerView: UIPickerView!
     @IBOutlet weak var petTextField: UITextField!
     @IBOutlet weak var livingAreaTextField: UITextField!
-    @IBOutlet weak var livingAreaPickerView: UIPickerView!
+    //@IBOutlet weak var livingAreaPickerView: UIPickerView!
     @IBOutlet weak var petPickerView: UIPickerView!
     @IBOutlet weak var hardwoodPercent: UITextField!
     @IBOutlet weak var woodenFloorPercent: UITextField!
@@ -57,6 +57,12 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         carpetPickerView.layer.cornerRadius = 8
         carpetPickerView.clipsToBounds = true
         carpetPickerView.showsSelectionIndicator = true
+        carpetPickerView.backgroundColor = UIColor.clear
+        //hardwoodFloorPickerView.alpha = 0.5
+        //carpetPickerView.alpha = 0.5
+        //petPickerView.alpha = 0.5
+        //livingAreaSizePickerView.alpha = 0.5
+
         searchPageLabel.layer.cornerRadius = 8
         searchPageLabel.clipsToBounds = true
         
