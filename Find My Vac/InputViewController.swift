@@ -80,7 +80,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         return resultArray
     }
     
-    func calculateTotal(woodenPercent:Int, carpetPercent:Int, pet:Int, livingAreaSpace:Int)->Int{
+    func calculateTotal(woodenPercent:Int, carpetPercent:Int, pet:Int, livingAreaSpace:Int)->String{
         
         var total:Int=0
         total = woodenPercent+carpetPercent
@@ -93,39 +93,53 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         else if livingAreaSpace==2 {
             total += 55
         }
+        print(total)
+
+        var returnString:String = ""
         
-        return total
+        switch total {
+        case (0...120):
+            returnString = "SmallRange"
+        case (121...145):
+            returnString = "MediumRange"
+        case (146...200):
+            returnString = "LargeRange"
+   
+        default:
+            return ""
+        }
+        
+        return returnString
     }
 
-    func returnVacuumType(hardwood:Double, carpet:Double, pet:String, livingSpace:String) -> String {
-        if total == total {
-            total = hardwood + carpet}
-        
-        //self.pet = pet
-        if petTextField.text! == "yes" {
-            total += 20.0
-        }
-        if livingAreaTextField.text! == "Small" {
-            total += 10
-        } else if livingAreaTextField.text! == "Medium"{
-            total += 30
-        } else if livingAreaTextField.text! == "Large"{
-            total += 70
-        }
-        
-        if  vacuumType == vacuumType {
-            if total < 135 {
-                vacuumType = "Cheap ass vacuum range suggested you broke bastard"
-            } else if total > 135 || total < 150 {
-                vacuumType = "Mid range suggested, go for it."
-            } else if total > 150 {
-                vacuumType = "Large range suggested, you lucky bastard"
-            }
-        }
-        
-        return vacuumType!
-    }
-
+//    func returnVacuumType(hardwood:Double, carpet:Double, pet:String, livingSpace:String) -> String {
+//        if total == total {
+//            total = hardwood + carpet}
+//        
+//        //self.pet = pet
+//        if petTextField.text! == "yes" {
+//            total += 20.0
+//        }
+//        if livingAreaTextField.text! == "Small" {
+//            total += 10
+//        } else if livingAreaTextField.text! == "Medium"{
+//            total += 30
+//        } else if livingAreaTextField.text! == "Large"{
+//            total += 70
+//        }
+//        if  vacuumType == vacuumType {
+//            if total < 135 {
+//                vacuumType = "Cheap ass vacuum range suggested you broke bastard"
+//            } else if total > 135 || total < 150 {
+//                vacuumType = "Mid range suggested, go for it."
+//            } else if total > 150 {
+//                vacuumType = "Large range suggested, you lucky bastard"
+//            }
+//        }
+//        
+//        return vacuumType!
+//    }
+//
     func addNumbers (a:Double, b:Double) -> Double {
        return a+b
     }
@@ -133,9 +147,9 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     @IBAction func submitButtonTap(_ sender: UIButton) {
     // print(hardwoodFloorPickerView.selectedRow(inComponent: 0))
     
-    let returnedTotal = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
+    let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
         
-    print(returnedTotal)
+    print(returnedString)
         
     }
     
