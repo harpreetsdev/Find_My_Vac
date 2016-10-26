@@ -64,6 +64,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10053C311DC1244200355F9A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				102A0B221DAAA866007A4DD0 /* ViewController.swift */,
+				102A0B491DAAD71C007A4DD0 /* InputViewController.swift */,
+				5EFB881E1DB6C165002A691D /* ResultTableViewController.swift */,
+				102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		10053C321DC1245600355F9A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				102A0B2F1DAAA866007A4DD0 /* Info.plist */,
+				102A0B201DAAA866007A4DD0 /* AppDelegate.swift */,
+				102A0B271DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		10053C331DC1247D00355F9A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				102A0B2A1DAAA866007A4DD0 /* Assets.xcassets */,
+				102A0B2C1DAAA866007A4DD0 /* LaunchScreen.storyboard */,
+				102A0B241DAAA866007A4DD0 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		102A0B141DAAA866007A4DD0 = {
 			isa = PBXGroup;
 			children = (
@@ -85,16 +116,9 @@
 		102A0B1F1DAAA866007A4DD0 /* Find My Vac */ = {
 			isa = PBXGroup;
 			children = (
-				102A0B201DAAA866007A4DD0 /* AppDelegate.swift */,
-				102A0B221DAAA866007A4DD0 /* ViewController.swift */,
-				102A0B241DAAA866007A4DD0 /* Main.storyboard */,
-				102A0B2A1DAAA866007A4DD0 /* Assets.xcassets */,
-				102A0B2C1DAAA866007A4DD0 /* LaunchScreen.storyboard */,
-				102A0B2F1DAAA866007A4DD0 /* Info.plist */,
-				102A0B271DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld */,
-				102A0B491DAAD71C007A4DD0 /* InputViewController.swift */,
-				5EFB881E1DB6C165002A691D /* ResultTableViewController.swift */,
-				102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */,
+				10053C331DC1247D00355F9A /* Views */,
+				10053C321DC1245600355F9A /* Utilities */,
+				10053C311DC1244200355F9A /* Controllers */,
 			);
 			path = "Find My Vac";
 			sourceTree = "<group>";
