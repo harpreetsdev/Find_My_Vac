@@ -23,6 +23,7 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
         setUpView()
         // Do any additional setup after loading the view.
     }
+    @IBOutlet weak var returnNumberLabel: UILabel!
     
     func setUpView() {
         uprightVacuumTableView.delegate = self
@@ -47,18 +48,28 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+        
+        cell.vacuumTypeLogo?.text = "VACUUM TYPE"
         
         
     return cell
 
     }
     
+//    func returnCustomCell(thumbnailImageView:UIImageView, vacuumTypeLogo:UILabel, totalLabel:UILabel, disclosureImageView:UIImageView)->UITableViewCell{
+//    
+//        var thumbnailImageView:UIImageView
+//        var vacuumTypeLogo:UILabel
+//        var totalLabel:UILabel
+//        var disclosureImageView:UIImageView
+//        
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     
 
@@ -74,24 +85,13 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
 
 }
 
-//class CustomResultCell: UITableViewCell {
-//    var thumbnailImageView:UIImageView?
-//    var vacuumTypeLogo:UILabel?
-//    var totalLabel:UILabel?
-//    var disclosureImageView:UIImageView?
-//    
-//    
-//    convenience init(thumbnailImageView:UIImageView, vacuumTypeLogo:UILabel, totalLabel:UILabel, disclosureImageView:UIImageView) {
-//        
-//        super.init()
-//        
-//        self.thumbnailImageView = thumbnailImageView
-//        self.vacuumTypeLogo = vacuumTypeLogo
-//        self.totalLabel = totalLabel
-//        self.disclosureImageView = disclosureImageView
-//    }
-//    
+class CustomResultCell: UITableViewCell {
+    var thumbnailImageView:UIImageView?
+    var vacuumTypeLogo:UILabel?
+    var totalLabel:UILabel?
+    var disclosureImageView:UIImageView?
+    
 //    required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
-//}
+}
