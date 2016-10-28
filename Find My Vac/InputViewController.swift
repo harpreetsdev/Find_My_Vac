@@ -25,11 +25,12 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var vacuumType:String?
     var petArray = ["Yes","No"]
     var livingSpaceArray = ["Small","Medium","Large"]
-    var total : Double = 0.0 
+    var total : Int = 0
     @IBOutlet weak var submitButton: UIButton!
     var pet:String?
     var finalString:String?
-  
+    var returnString:String = ""
+
     
     
     override func viewDidLoad() {
@@ -85,7 +86,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     func calculateTotal(woodenPercent:Int, carpetPercent:Int, pet:Int, livingAreaSpace:Int)->String{
         
-        var total:Int=0
+        //var total:Int=0
         total = woodenPercent+carpetPercent
         if pet==0 {
             total += 30
@@ -97,8 +98,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             total += 55
         }
         print(total)
-
-        var returnString:String = ""
         
         switch total {
         case (0...120):
