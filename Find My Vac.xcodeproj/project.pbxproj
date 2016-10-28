@@ -17,6 +17,7 @@
 		102A0B391DAAA866007A4DD0 /* Find_My_VacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B381DAAA866007A4DD0 /* Find_My_VacTests.swift */; };
 		102A0B4A1DAAD71C007A4DD0 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B491DAAD71C007A4DD0 /* InputViewController.swift */; };
 		102A0B4C1DAAD72E007A4DD0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */; };
+		10CAD89D1DC3CD27000F6BAC /* ProductData.json in Resources */ = {isa = PBXBuildFile; fileRef = 10CAD89C1DC3CD27000F6BAC /* ProductData.json */; };
 		5EFB881F1DB6C165002A691D /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB881E1DB6C165002A691D /* ResultTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		102A0B3A1DAAA866007A4DD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		102A0B491DAAD71C007A4DD0 /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		10CAD89C1DC3CD27000F6BAC /* ProductData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProductData.json; sourceTree = "<group>"; };
 		5EFB881E1DB6C165002A691D /* ResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +86,7 @@
 				102A0B201DAAA866007A4DD0 /* AppDelegate.swift */,
 				102A0B271DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld */,
 				10053C341DC1251500355F9A /* ServiceFactory.swift */,
+				10CAD89C1DC3CD27000F6BAC /* ProductData.json */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				102A0B2E1DAAA866007A4DD0 /* LaunchScreen.storyboard in Resources */,
 				102A0B2B1DAAA866007A4DD0 /* Assets.xcassets in Resources */,
 				102A0B261DAAA866007A4DD0 /* Main.storyboard in Resources */,
+				10CAD89D1DC3CD27000F6BAC /* ProductData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

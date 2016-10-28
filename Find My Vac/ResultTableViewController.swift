@@ -9,6 +9,16 @@
 import UIKit
 
 class ResultTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//        // Custom initialization
+//    }
+    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     @IBAction func backButtonTap(_ sender: UIButton) {
     self.dismiss(animated: true, completion: nil)
     }
@@ -23,23 +33,25 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
         setUpView()
         // Do any additional setup after loading the view.
     }
-    @IBOutlet weak var returnNumberLabel: UILabel!
     
     func setUpView() {
         uprightVacuumTableView.delegate = self
         uprightVacuumTableView.dataSource = self
         uprightVacuumTableView.layer.cornerRadius = 8
         uprightVacuumTableView.clipsToBounds = true
+        uprightVacuumTableView.tag = 1
         
         canisterVacuumTableView.delegate = self
         canisterVacuumTableView.dataSource = self
         canisterVacuumTableView.layer.cornerRadius = 8
         canisterVacuumTableView.clipsToBounds = true
-        
+        canisterVacuumTableView.tag = 2
+
         handVaccumTabelView.delegate = self
         handVaccumTabelView.dataSource = self
         handVaccumTabelView.layer.cornerRadius = 8
         handVaccumTabelView.clipsToBounds = true
+        handVaccumTabelView.tag = 3
 
     }
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,10 +59,31 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+    
         
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+        switch tableView.tag {
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+
+            cell.vacuumTypeLabel?.text = "UprightVacs"
+            cell.totalNumLabel?.text = "10"
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+
+            cell.vacuumTypeLabel?.text = "Canistervacuums1"
+            cell.totalNumLabel?.text = "15"
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+
+            cell.vacuumTypeLabel?.text = "Handheldvacuums2"
+            cell.totalNumLabel?.text = "10"
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+
+            cell.vacuumTypeLabel?.text = ""
+        }
         
-        cell.vacuumTypeLogo?.text = "VACUUM TYPE"
         
         
     return cell
@@ -86,11 +119,21 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
 }
 
 class CustomResultCell: UITableViewCell {
-    var thumbnailImageView:UIImageView?
-    var vacuumTypeLogo:UILabel?
-    var totalLabel:UILabel?
-    var disclosureImageView:UIImageView?
+//    var disclosureImageView = UIImageView()
     
+    @IBOutlet weak var vacuumTypeLabel = UILabel()
+    @IBOutlet weak var totalNumLabel = UILabel()
+    @IBOutlet weak var thumbnailImgView = UIImageView()
+    
+//    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        fatalError("init(coder:) has not been implemented")
+//    }
 //    required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
