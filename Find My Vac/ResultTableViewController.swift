@@ -64,22 +64,23 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         switch tableView.tag {
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
 
             cell.vacuumTypeLabel?.text = "UprightVacs"
             cell.totalNumLabel?.text = "10"
+            
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
 
             cell.vacuumTypeLabel?.text = "Canistervacuums1"
             cell.totalNumLabel?.text = "15"
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
 
             cell.vacuumTypeLabel?.text = "Handheldvacuums2"
             cell.totalNumLabel?.text = "10"
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+           // let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
 
             cell.vacuumTypeLabel?.text = ""
         }
@@ -88,6 +89,11 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
         
     return cell
 
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+        print("Tapped on table number \(tableView.tag)")
     }
     
 //    func returnCustomCell(thumbnailImageView:UIImageView, vacuumTypeLogo:UILabel, totalLabel:UILabel, disclosureImageView:UIImageView)->UITableViewCell{
