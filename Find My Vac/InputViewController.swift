@@ -10,6 +10,11 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    
+    enum CoreDataError: Error {
+        case jsonWriteFailed
+        case readFailed
+    }
     @IBOutlet weak var backgroundImgView: UIImageView!
     @IBOutlet weak var searchPageLabel: UILabel!
     @IBOutlet weak var hardwoodFloorPickerView: UIPickerView!
@@ -71,6 +76,9 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         submitButton.layer.cornerRadius = 8
         submitButton.clipsToBounds = true
         submitButton.setBackgroundImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
+        //let error:NSError?
+        let factoryInstance = ServiceFactory.sharedInstance
+        try? factoryInstance.writeDataToPersistentContainer()
         
     }
     
