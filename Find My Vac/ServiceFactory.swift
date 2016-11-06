@@ -11,6 +11,33 @@ import CoreData
 
 class ServiceFactory: NSObject {
     
+    var managedObjectContext : NSManagedObjectContext
+    
+    override init() {
+        guard let modelURL = Bundle.main.url(forResource: "Find_My_Vac", withExtension: "momd") else {
+            fatalError("Error loading the bundle")
+        }
+        guard let managedModel = NSManagedObjectModel.init(contentsOf: modelURL) else {
+            fatalError("Error initializing the Model")
+        }
+        
+        let persistentStoreCoord = NSPersistentStoreCoordinator(managedObjectModel: managedModel)
+        managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoord
+        
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docURL = urls[urls.endIndex-1]
+        
+        let storeURL = docURL.appendingPathComponent("Find_My_Vac.sqlite")
+        
+        do {
+            try persistentStoreCoord.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+        } catch  {
+            fatalError("Could not initialzie the Persistent store coordinator")
+        }
+        
+        
+    }
     enum CoreDataError:Error {
     
         case WriteFailed
@@ -24,21 +51,25 @@ class ServiceFactory: NSObject {
     
     func writeDataToPersistentContainer()  throws {
        var jsonArray:Array<Any>
-       let context = persistentContainer.viewContext
+       //let context = persistentContainer.viewContext
 //       let coordinator = self.persistentContainer.persistentStoreCoordinator
        // Create the path to json file
        let path = Bundle.main.path(forResource: "ProductData", ofType: "json")
        let productURL = URL.init(fileURLWithPath: path!)
         
         // Converting the string file to Data
-        let jsonData = try? Data.init(contentsOf: productURL)
+        
+        guard let jsonData = try? Data.init(contentsOf: productURL) else {
+        fatalError("Error converting String to Data")
+        }
         // Serializing the data through JSONSerialization class
-        jsonArray = try! JSONSerialization.jsonObject(with: jsonData!, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Any>
+        
+        jsonArray = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Any>
         // Interating through the Array created
         for singleObject in jsonArray {
             
-        let productEntity = NSEntityDescription.entity(forEntityName: "Product", in: context)
-        let product = Product(entity: productEntity!, insertInto: context)
+        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: managedObjectContext)
+        let product = Product(entity: productEntity!, insertInto: managedObjectContext)
         
         // Writing the entire Array of Dictionary to NSManageObject
         product.cellImage = (singleObject as! Dictionary)["cellImage"]
@@ -62,7 +93,7 @@ class ServiceFactory: NSObject {
         fetchRequest.predicate = NSPredicate.init(format: "priceRange == MediumRange", argumentArray: [])
         
         //returnedObjects = try! persistentContainer.viewContext.execute(fetchRequest) as! Array<Any>
-        
+        return []
     }
     // MARK: - Core Data stack
     
