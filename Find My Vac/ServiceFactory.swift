@@ -24,8 +24,8 @@ class ServiceFactory: NSObject {
     
     func writeDataToPersistentContainer()  throws {
        var jsonArray:Array<Any>
-       let context = self.persistentContainer.viewContext
-
+       let context = persistentContainer.viewContext
+//       let coordinator = self.persistentContainer.persistentStoreCoordinator
        // Create the path to json file
        let path = Bundle.main.path(forResource: "ProductData", ofType: "json")
        let productURL = URL.init(fileURLWithPath: path!)
@@ -39,8 +39,8 @@ class ServiceFactory: NSObject {
             
         let productEntity = NSEntityDescription.entity(forEntityName: "Product", in: context)
         let product = Product(entity: productEntity!, insertInto: context)
-        // Writing the entire Array of Dictionary to NSManageObject
         
+        // Writing the entire Array of Dictionary to NSManageObject
         product.cellImage = (singleObject as! Dictionary)["cellImage"]
         product.detailPageProductImage = (singleObject as! Dictionary)["detailPageProductImage"]
         product.detailPageProductTitle = (singleObject as! Dictionary)["detailPageProductTitle"]
@@ -50,9 +50,19 @@ class ServiceFactory: NSObject {
         product.seq = (singleObject as! Dictionary)["seq"]
         product.vacuumType = (singleObject as! Dictionary)["vacuumType"]
         product.productType = (singleObject as! Dictionary)["productType"]
-            
-        }
+        
         saveContext()
+        }
+        
+    }
+    
+    func returnSpecificCategoryVacs()->Array<Any>{
+        var returnedObjects:Array<Any> = []
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Product")
+        fetchRequest.predicate = NSPredicate.init(format: "priceRange == MediumRange", argumentArray: [])
+        
+        //returnedObjects = try! persistentContainer.viewContext.execute(fetchRequest) as! Array<Any>
+        
     }
     // MARK: - Core Data stack
     
@@ -84,6 +94,11 @@ class ServiceFactory: NSObject {
     }()
     
     // MARK: - Core Data Saving support
+    
+    lazy var applicationDocumentsDirectory: NSURL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return urls[urls.count-1] as NSURL
+    }()
     
     func saveContext () {
         let context = persistentContainer.viewContext
