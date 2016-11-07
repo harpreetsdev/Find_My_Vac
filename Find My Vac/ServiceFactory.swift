@@ -106,43 +106,33 @@ class ServiceFactory: NSObject {
         
     }
     
-    func returnSpecificCategoryVacs() throws ->Array<Any>{
+    func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Any>{
         //var productArray = [Product]()
         let context = persistentContainer.viewContext
         var persistentStoreRes = [NSPersistentStoreResult]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
-        let predicateString = "SmallRange"
-        //let fetchPredicate = NSPredicate.init(format: "priceRange = \(predicateString)", argumentArray: nil)
-        let sortDescriptor = NSSortDescriptor.init(key: "seq", ascending: true)
+        let predicateString = category
+        let fetchPredicate = NSPredicate(format: "priceRange = \(predicateString)", argumentArray: nil)
+        let sortDescriptor = NSSortDescriptor.init(key: sort, ascending: true)
         let descriptors = [sortDescriptor]
-        //fetchRequest.predicate = fetchPredicate
+        fetchRequest.predicate = fetchPredicate
         fetchRequest.sortDescriptors = descriptors
-        //let error:NSError?
-//        guard productArray = try context.execute(fetchRequest) as! [Product] else {
-//            fatalError("Error while reading from disc")
-//            
-//        }
-//        let asyncFetchRequest = NSAsynchronousFetchRequest.init(fetchRequest: fetchRequest, completionBlock:
-//        {(asyncFetchRequest) -> Void in n
-        
- //       })
     
         do {
             let productArray = [try context.execute(fetchRequest)] as Array<Any>
             
-//            for (index, value) in productArray {
-//            print("Item = \(item)")
-//            }
-            print("Persistent store object = \(productArray.count)")
-            return persistentStoreRes
+            
+            for (index, value) in productArray.enumerated() {
 
+            print("Item index = \(index)")
+            print("Item value = \(value)")
+            return productArray
+            }
         } catch  {
             print("Error reading from disk =\(error)")
         }
         return []
-         //let returnedObjects = try? managedObjectContext.execute(fetchRequest) as! [Product]
-        
-        //returnedObjects = try! persistentContainer.viewContext.execute(fetchRequest) as! Array<Any>
+    
     }
     // MARK: - Core Data stack
     

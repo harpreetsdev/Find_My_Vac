@@ -35,13 +35,13 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var pet:String?
     var finalString:String?
     var returnString:String = ""
-    var factoryInstance : ServiceFactory
+    var factoryInstance = ServiceFactory()
     
     override func viewWillAppear(_ animated: Bool) {
-        //try? factoryInstance.writeDataToPersistentContainer()
-        let objectArray = try? factoryInstance.returnSpecificCategoryVacs()
-        print("Object Array = \(objectArray)")
-    }
+        print("View will appear")
+            }
+    
+    
     override func viewDidLoad() {
     
     super.viewDidLoad()
@@ -81,10 +81,10 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         submitButton.clipsToBounds = true
         submitButton.setBackgroundImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
         //let error:NSError?
-        let factoryInstance = ServiceFactory.sharedInstance
+        factoryInstance = ServiceFactory.sharedInstance
         try? factoryInstance.writeDataToPersistentContainer()
 //        let objectArray = try? factoryInstance.returnSpecificCategoryVacs()
-        //print(objectArray)
+//        print(objectArray)
     }
     
     //Mark: Helper methods.
@@ -165,6 +165,15 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
         
     print(returnedString)
+        
+        do {
+            let objArray = try factoryInstance.returnSpecificCategoryVacs(forCategory: returnedString, sortedBy: "")
+            print("Returned ARRAY = \(objArray.count)")
+        }
+        catch  {
+            print("Error = \(error)")
+        }
+
         
     }
     
