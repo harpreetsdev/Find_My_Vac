@@ -11,30 +11,30 @@ import CoreData
 
 class ServiceFactory: NSObject {
     
-    var managedObjectContext : NSManagedObjectContext
+    //var managedObjectContext : NSManagedObjectContext
     
     override init() {
-        guard let modelURL = Bundle.main.url(forResource: "Find_My_Vac", withExtension: "momd") else {
-            fatalError("Error loading the bundle")
-        }
-        guard let managedModel = NSManagedObjectModel.init(contentsOf: modelURL) else {
-            fatalError("Error initializing the Model")
-        }
-        
-        let persistentStoreCoord = NSPersistentStoreCoordinator(managedObjectModel: managedModel)
-        managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = persistentStoreCoord
-        
-        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let docURL = urls[urls.endIndex-1]
-        
-        let storeURL = docURL.appendingPathComponent("Find_My_Vac.sqlite")
-        
-        do {
-            try persistentStoreCoord.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
-        } catch  {
-            fatalError("Could not initialzie the Persistent store coordinator")
-        }
+//        guard let modelURL = Bundle.main.url(forResource: "Find_My_Vac", withExtension: "momd") else {
+//            fatalError("Error loading the bundle")
+//        }
+//        guard let managedModel = NSManagedObjectModel.init(contentsOf: modelURL) else {
+//            fatalError("Error initializing the Model")
+//        }
+//        
+//        let persistentStoreCoord = NSPersistentStoreCoordinator(managedObjectModel: managedModel)
+//        managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+//        managedObjectContext.persistentStoreCoordinator = persistentStoreCoord
+//        
+//        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        let docURL = urls[urls.endIndex-1]
+//        
+//        let storeURL = docURL.appendingPathComponent("Find_My_Vac.sqlite")
+//        
+//        do {
+//            try persistentStoreCoord.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+//        } catch  {
+//            fatalError("Could not initialzie the Persistent store coordinator")
+//        }
         
         
     }
@@ -51,8 +51,24 @@ class ServiceFactory: NSObject {
     
     func writeDataToPersistentContainer()  throws {
        var jsonArray:Array<Any>
-       //let context = persistentContainer.viewContext
-//       let coordinator = self.persistentContainer.persistentStoreCoordinator
+       let context = persistentContainer.viewContext
+       //let psc = persistentContainer.persistentStoreCoordinator
+       let storeURL = persistentContainer.persistentStoreDescriptions.first?.url //applicationDocumentsDirectory.appendingPathComponent("Find_My_Vac.sqlite")
+       
+//        do {
+//            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+//        } catch  {
+//            fatalError("Could not initialzie the Persistent store coordinator")
+//        }
+        
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: (storeURL?.absoluteString)!) {
+        //try! fileManager.createDirectory(at: (storeURL)!, withIntermediateDirectories: true, attributes: nil)
+        }
+        else {
+        print("No file exists at path.")
+        }
+        //       let coordinator = self.persistentContainer.persistentStoreCoordinator
        // Create the path to json file
        let path = Bundle.main.path(forResource: "ProductData", ofType: "json")
        let productURL = URL.init(fileURLWithPath: path!)
@@ -66,34 +82,67 @@ class ServiceFactory: NSObject {
         
         jsonArray = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Any>
         // Interating through the Array created
-        for singleObject in jsonArray {
+        for (index, value) in jsonArray.enumerated() {
             
-        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: managedObjectContext)
-        let product = Product(entity: productEntity!, insertInto: managedObjectContext)
+        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: persistentContainer.viewContext)
+        let product = Product(entity: productEntity!, insertInto: context)
+
+            
+        // Writing the entire Array of Dictionaries to NSManageObject
         
-        // Writing the entire Array of Dictionary to NSManageObject
-        product.cellImage = (singleObject as! Dictionary)["cellImage"]
-        product.detailPageProductImage = (singleObject as! Dictionary)["detailPageProductImage"]
-        product.detailPageProductTitle = (singleObject as! Dictionary)["detailPageProductTitle"]
-        product.priceRange = (singleObject as! Dictionary)["priceRange"]
-        product.menuScreenTitle = (singleObject as! Dictionary)["menuScreenTitle"]
-        product.productFeatureText = (singleObject as! Dictionary)["productFeatureText"]
-        product.seq = (singleObject as! Dictionary)["seq"]
-        product.vacuumType = (singleObject as! Dictionary)["vacuumType"]
-        product.productType = (singleObject as! Dictionary)["productType"]
+        print(index)
+        product.cellImage = (value as! Dictionary)["cellImage"]
+        product.detailPageProductImage = (value as! Dictionary)["detailPageProductImage"]
+        product.detailPageProductTitle = (value as! Dictionary)["detailPageProductTitle"]
+        product.priceRange = (value as! Dictionary)["priceRange"]
+        product.menuScreenTitle = (value as! Dictionary)["menuScreenTitle"]
+        product.productFeatureText = (value as! Dictionary)["productFeatureText"]
+        product.seq = (value as! Dictionary)["seq"]
+        product.vacuumType = (value as! Dictionary)["vacuumType"]
+        product.productType = (value as! Dictionary)["productType"]
         
         saveContext()
         }
         
     }
     
-    func returnSpecificCategoryVacs()->Array<Any>{
-        var returnedObjects:Array<Any> = []
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Product")
-        fetchRequest.predicate = NSPredicate.init(format: "priceRange == MediumRange", argumentArray: [])
+    func returnSpecificCategoryVacs() throws ->Array<Any>{
+        //var productArray = [Product]()
+        let context = persistentContainer.viewContext
+        var persistentStoreRes = [NSPersistentStoreResult]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
+        let predicateString = "SmallRange"
+        //let fetchPredicate = NSPredicate.init(format: "priceRange = \(predicateString)", argumentArray: nil)
+        let sortDescriptor = NSSortDescriptor.init(key: "seq", ascending: true)
+        let descriptors = [sortDescriptor]
+        //fetchRequest.predicate = fetchPredicate
+        fetchRequest.sortDescriptors = descriptors
+        //let error:NSError?
+//        guard productArray = try context.execute(fetchRequest) as! [Product] else {
+//            fatalError("Error while reading from disc")
+//            
+//        }
+//        let asyncFetchRequest = NSAsynchronousFetchRequest.init(fetchRequest: fetchRequest, completionBlock:
+//        {(asyncFetchRequest) -> Void in n
+        
+ //       })
+    
+        do {
+            let productArray = [try context.execute(fetchRequest)] as Array<Any>
+            
+//            for (index, value) in productArray {
+//            print("Item = \(item)")
+//            }
+            print("Persistent store object = \(productArray.count)")
+            return persistentStoreRes
+
+        } catch  {
+            print("Error reading from disk =\(error)")
+        }
+        return []
+         //let returnedObjects = try? managedObjectContext.execute(fetchRequest) as! [Product]
         
         //returnedObjects = try! persistentContainer.viewContext.execute(fetchRequest) as! Array<Any>
-        return []
     }
     // MARK: - Core Data stack
     
@@ -126,9 +175,10 @@ class ServiceFactory: NSObject {
     
     // MARK: - Core Data Saving support
     
-    lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: URL = {
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return urls[urls.count-1] as NSURL
+        let documentsDirectory = urls[0]
+        return documentsDirectory
     }()
     
     func saveContext () {

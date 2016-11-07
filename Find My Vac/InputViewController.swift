@@ -11,10 +11,10 @@ import UIKit
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     
-    enum CoreDataError: Error {
-        case jsonWriteFailed
-        case readFailed
-    }
+//    enum CoreDataError: Error {
+//        case jsonWriteFailed
+//        case readFailed
+//    }
     @IBOutlet weak var backgroundImgView: UIImageView!
     @IBOutlet weak var searchPageLabel: UILabel!
     @IBOutlet weak var hardwoodFloorPickerView: UIPickerView!
@@ -35,9 +35,13 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var pet:String?
     var finalString:String?
     var returnString:String = ""
-
+    var factoryInstance : ServiceFactory
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        //try? factoryInstance.writeDataToPersistentContainer()
+        let objectArray = try? factoryInstance.returnSpecificCategoryVacs()
+        print("Object Array = \(objectArray)")
+    }
     override func viewDidLoad() {
     
     super.viewDidLoad()
@@ -79,7 +83,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         //let error:NSError?
         let factoryInstance = ServiceFactory.sharedInstance
         try? factoryInstance.writeDataToPersistentContainer()
-        
+//        let objectArray = try? factoryInstance.returnSpecificCategoryVacs()
+        //print(objectArray)
     }
     
     //Mark: Helper methods.
