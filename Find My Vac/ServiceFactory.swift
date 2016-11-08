@@ -109,13 +109,13 @@ class ServiceFactory: NSObject {
     func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Any>{
         //var productArray = [Product]()
         let context = persistentContainer.viewContext
-        var persistentStoreRes = [NSPersistentStoreResult]()
+        //var persistentStoreRes = [NSPersistentStoreResult]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
-        let predicateString = category
-        let fetchPredicate = NSPredicate(format: "priceRange = \(predicateString)", argumentArray: nil)
+        //let predicateString = category
+        //let fetchPredicate = NSPredicate(format: "priceRange = \(category)", argumentArray: nil)
         let sortDescriptor = NSSortDescriptor.init(key: sort, ascending: true)
         let descriptors = [sortDescriptor]
-        fetchRequest.predicate = fetchPredicate
+        //fetchRequest.predicate = fetchPredicate
         fetchRequest.sortDescriptors = descriptors
     
         do {

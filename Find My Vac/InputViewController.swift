@@ -167,7 +167,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     print(returnedString)
         
         do {
-            let objArray = try factoryInstance.returnSpecificCategoryVacs(forCategory: returnedString, sortedBy: "")
+            let objArray = try factoryInstance.returnSpecificCategoryVacs(forCategory: returnedString, sortedBy: "priceRange")
             print("Returned ARRAY = \(objArray.count)")
         }
         catch  {
