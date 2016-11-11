@@ -89,9 +89,9 @@ class ServiceFactory: NSObject {
         // Interating through the Array created
         for (index, value) in jsonArray.enumerated() {
             
-//        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: persistentContainer.viewContext)
-//        let product = Product(entity: productEntity!, insertInto: context)
-        let product = insertNewEntity(name: "Product") as! Product
+        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: persistentContainer.viewContext)
+        let product = Product(entity: productEntity!, insertInto: context)
+  //      let product = insertNewEntity(name: "Product") as! Product
             
         // Writing the entire Array of Dictionaries to NSManageObject
         

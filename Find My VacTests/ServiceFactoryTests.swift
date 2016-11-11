@@ -22,19 +22,19 @@ class ServiceFactoryTests: XCTestCase {
     }
     
     func testDataWriteFunction() {
-       XCTAssertNil(try! factoryInstance.writeDataToPersistentContainer(), "Could not write Data to Persistent container.") 
+       XCTAssertNotNil(try! factoryInstance.writeDataToPersistentContainer(), "Could not write Data to Persistent container.")
     }
     
     func testDataReadFunction() {
-        let mockReturnArray = try! self.factoryInstance.returnSpecificCategoryVacs(forCategory: "", sortedBy: "")
-        XCTAssertNil(mockReturnArray, "Could not return Data")
+//        let mockReturnArray = try! self.factoryInstance.returnSpecificCategoryVacs(forCategory: "", sortedBy: "")
+//        XCTAssertNil(mockReturnArray, "Could not return Data")
     }
     
     func testDataReadProcess() {
         // This is an example of a performance test case.
         self.measure {
         try! self.factoryInstance.writeDataToPersistentContainer()
-        let _ = try! self.factoryInstance.returnSpecificCategoryVacs(forCategory: "", sortedBy: "")
+        //let _ = try! self.factoryInstance.returnSpecificCategoryVacs(forCategory: "", sortedBy: "")
         }
     }
     
