@@ -75,23 +75,28 @@ class ServiceFactory: NSObject {
         
         // Converting the string file to Data
         
-        guard let jsonData = try? Data.init(contentsOf: productURL) else {
+        guard let jsonData = try? Data(contentsOf: productURL) else {
         fatalError("Error converting String to Data")
         }
         // Serializing the data through JSONSerialization class
         
-        jsonArray = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Any>
+        jsonArray = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! Array<Any>
+        
+//        guard let jsonArray as NSDictionary else {
+//        fatalError("Could not convert into dictionary")
+//        }
+        
         // Interating through the Array created
         for (index, value) in jsonArray.enumerated() {
             
-        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: persistentContainer.viewContext)
-        let product = Product(entity: productEntity!, insertInto: context)
-
+//        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: persistentContainer.viewContext)
+//        let product = Product(entity: productEntity!, insertInto: context)
+        let product = insertNewEntity(name: "Product") as! Product
             
         // Writing the entire Array of Dictionaries to NSManageObject
         
         print(index)
-        product.cellImage = (value as! Dictionary)["cellImage"]
+        product.cellImage = (value as! Dictionary)["cellImage"]!
         product.detailPageProductImage = (value as! Dictionary)["detailPageProductImage"]
         product.detailPageProductTitle = (value as! Dictionary)["detailPageProductTitle"]
         product.priceRange = (value as! Dictionary)["priceRange"]
@@ -101,9 +106,9 @@ class ServiceFactory: NSObject {
         product.vacuumType = (value as! Dictionary)["vacuumType"]
         product.productType = (value as! Dictionary)["productType"]
         
-        saveContext()
+        //saveContext()
         }
-        
+        saveContext()
     }
     
     func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Any>{
@@ -185,4 +190,7 @@ class ServiceFactory: NSObject {
         }
     }
 
+    func insertNewEntity(name:String) -> NSManagedObject {
+    return NSEntityDescription.insertNewObject(forEntityName: name, into: persistentContainer.viewContext)
+    }
 }
