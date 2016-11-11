@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bKD-ep-3aq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bKD-ep-3aq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -33,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="j21-os-2V0"/>
                     </layoutGuides>
                     <view key="view" alpha="0.84999999999999998" contentMode="scaleToFill" id="Gla-6s-bTn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="VacuumPage1" translatesAutoresizingMaskIntoConstraints="NO" id="ZeQ-5j-lil" userLabel="Background vac view">
@@ -45,9 +46,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.12156862745098039" green="0.3843137254901961" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hardwood%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHl-NR-UsS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Hardwood%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHl-NR-UsS">
                                 <frame key="frameInset" minX="16" minY="191" width="140" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -85,23 +85,22 @@
                                     <segue destination="eIO-Q6-MpD" kind="presentation" identifier="ToTableViewController" modalTransitionStyle="flipHorizontal" id="YNG-qK-gub"/>
                                 </connections>
                             </button>
-                            <pickerView tag="1" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2B-WJ-aDs" userLabel="Hardwood picker view">
+                            <pickerView tag="1" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2B-WJ-aDs" userLabel="Hardwood picker view">
                                 <frame key="frameInset" minX="175" minY="190" height="70" maxX="20"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.75" height="1"/>
                             </pickerView>
-                            <pickerView tag="2" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-62-Dbm" userLabel="Carpet Picker view">
+                            <pickerView tag="2" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-62-Dbm" userLabel="Carpet Picker view">
                                 <frame key="frameInset" minX="175" minY="280" height="70" maxX="20"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </pickerView>
                             <pickerView tag="3" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qVe-bM-ePs" userLabel="Pet picker view">
                                 <frame key="frameInset" minX="175" minY="358" height="70" maxX="20"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Input information below to find a vacuum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-KL-Yrc">
-                                <frame key="frameInset" minX="22" minY="107" width="331" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input information below to find a vacuum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-KL-Yrc">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="lVg-R0-Pgg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.12941176470588237" green="0.96470588235294119" blue="0.16078431372549021" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -110,17 +109,28 @@
                                 <frame key="frameInset" minX="175" minY="434" height="70" maxX="20"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SEARCH PAGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdN-To-kKk">
-                                <frame key="frameInset" minX="98" minY="55" width="179" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="KhmerSangamMN" family="Khmer Sangam MN" pointSize="22"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH PAGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdN-To-kKk">
+                                <fontDescription key="fontDescription" name="KhmerSangamMN" family="Khmer Sangam MN" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568629" green="0.40784313725490196" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Cb-KL-Yrc" secondAttribute="trailing" constant="6" id="1hL-Zg-yNK"/>
+                            <constraint firstItem="DBk-62-Dbm" firstAttribute="top" secondItem="D2B-WJ-aDs" secondAttribute="bottom" constant="20" id="4K6-E9-kxl"/>
+                            <constraint firstItem="KdN-To-kKk" firstAttribute="top" secondItem="n0x-ih-7NX" secondAttribute="bottom" constant="30" id="AVJ-uS-0fp"/>
+                            <constraint firstItem="KdN-To-kKk" firstAttribute="leading" secondItem="Gla-6s-bTn" secondAttribute="leadingMargin" constant="75" id="Fey-Ht-OMZ"/>
+                            <constraint firstItem="2Cb-KL-Yrc" firstAttribute="top" secondItem="KdN-To-kKk" secondAttribute="bottom" constant="15" id="I3d-gB-SQs"/>
+                            <constraint firstItem="2Cb-KL-Yrc" firstAttribute="top" secondItem="KdN-To-kKk" secondAttribute="bottom" constant="15" id="Ra7-lq-Dq8"/>
+                            <constraint firstItem="D2B-WJ-aDs" firstAttribute="trailing" secondItem="Gla-6s-bTn" secondAttribute="trailingMargin" id="YcX-G2-mWU"/>
+                            <constraint firstItem="D2B-WJ-aDs" firstAttribute="leading" secondItem="EHl-NR-UsS" secondAttribute="trailing" constant="19" id="c6P-8K-UAd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KdN-To-kKk" secondAttribute="trailing" constant="75" id="n2B-Xg-az6"/>
+                            <constraint firstItem="2Cb-KL-Yrc" firstAttribute="centerX" secondItem="KdN-To-kKk" secondAttribute="centerX" id="rJm-et-qSf"/>
+                            <constraint firstItem="2Cb-KL-Yrc" firstAttribute="leading" secondItem="Gla-6s-bTn" secondAttribute="leadingMargin" constant="6" id="y1n-aV-oLE"/>
+                            <constraint firstItem="2Cb-KL-Yrc" firstAttribute="leading" secondItem="Gla-6s-bTn" secondAttribute="leadingMargin" constant="6" id="yc1-H0-LqJ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImgView" destination="ZeQ-5j-lil" id="g9F-ag-yB8"/>
@@ -145,7 +155,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PMf-7L-qVj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xVU-gy-JSR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Products Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbM-rH-LWe">
@@ -172,7 +182,7 @@
                                         <rect key="frame" x="0.0" y="28" width="300" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YiZ-aL-EG4" id="wly-11-EGc">
-                                            <frame key="frameInset" width="300" height="109"/>
+                                            <frame key="frameInset" width="300" height="109.66666666666667"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-ze-atO">
@@ -214,7 +224,7 @@
                                         <rect key="frame" x="0.0" y="28" width="300" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cLE-Z6-m6F" id="u20-Qq-iBb">
-                                            <frame key="frameInset" width="300" height="110"/>
+                                            <frame key="frameInset" width="300" height="109.66666666666667"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Canister Vaccums" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuN-6j-Mvf">
@@ -250,7 +260,7 @@
                                         <rect key="frame" x="0.0" y="28" width="300" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e9U-hE-0gw" id="Vvj-9b-6ve">
-                                            <frame key="frameInset" width="300" height="109"/>
+                                            <frame key="frameInset" width="300" height="109.66666666666667"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Handheld Vaccums" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBN-Ui-3Jk">
