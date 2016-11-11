@@ -50,6 +50,7 @@ class ServiceFactory: NSObject {
 
     
     func writeDataToPersistentContainer()  throws {
+        
        var jsonArray:Array<Any>
        let context = persistentContainer.viewContext
        //let psc = persistentContainer.persistentStoreCoordinator
@@ -89,13 +90,14 @@ class ServiceFactory: NSObject {
         // Interating through the Array created
         for (index, value) in jsonArray.enumerated() {
             
-        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: persistentContainer.viewContext)
-        let product = Product(entity: productEntity!, insertInto: context)
+        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: context)
+        let product = NSManagedObject(entity: productEntity!, insertInto: context) as! Product
   //      let product = insertNewEntity(name: "Product") as! Product
             
         // Writing the entire Array of Dictionaries to NSManageObject
         
         print(index)
+        //print(value)
         product.cellImage = (value as! Dictionary)["cellImage"]!
         product.detailPageProductImage = (value as! Dictionary)["detailPageProductImage"]
         product.detailPageProductTitle = (value as! Dictionary)["detailPageProductTitle"]
@@ -112,31 +114,33 @@ class ServiceFactory: NSObject {
     }
     
     func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Any>{
-        //var productArray = [Product]()
+        
+        var productArray : Array<Any> = []
+        
         let context = persistentContainer.viewContext
         //var persistentStoreRes = [NSPersistentStoreResult]()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Product")    //NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
         //let predicateString = category
-        //let fetchPredicate = NSPredicate(format: "priceRange = \(category)", argumentArray: nil)
-        let sortDescriptor = NSSortDescriptor.init(key: sort, ascending: true)
+        //let fetchPredicate = NSPredicate(format: "priceRange in[c] %@", category)
+        let sortDescriptor = NSSortDescriptor(key: sort, ascending: true)
         let descriptors = [sortDescriptor]
         //fetchRequest.predicate = fetchPredicate
         fetchRequest.sortDescriptors = descriptors
     
-        do {
-            let productArray = [try context.execute(fetchRequest)] as Array<Any>
+        //do {
+         productArray = [try context.execute(fetchRequest)] as Array<Any>
             
             
             for (index, value) in productArray.enumerated() {
 
             print("Item index = \(index)")
-            print("Item value = \(value)")
+            print("Item value = \(value as? NSDictionary)")
             return productArray
             }
-        } catch  {
-            print("Error reading from disk =\(error)")
-        }
-        return []
+        //} catch  {
+          //  print("Error reading from disk =\(error)")
+        //}
+        return productArray
     
     }
     // MARK: - Core Data stack

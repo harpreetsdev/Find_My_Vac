@@ -198,11 +198,12 @@
 				TargetAttributes = {
 					102A0B1C1DAAA866007A4DD0 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = V4Z5RSQAT5;
+						DevelopmentTeam = B59S6WSQJH;
 						ProvisioningStyle = Automatic;
 					};
 					102A0B331DAAA866007A4DD0 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = B59S6WSQJH;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 102A0B1C1DAAA866007A4DD0;
 					};
@@ -408,7 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = V4Z5RSQAT5;
+				DEVELOPMENT_TEAM = B59S6WSQJH;
 				INFOPLIST_FILE = "Find My Vac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "HSR.Find-My-Vac";
@@ -421,7 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = V4Z5RSQAT5;
+				DEVELOPMENT_TEAM = B59S6WSQJH;
 				INFOPLIST_FILE = "Find My Vac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "HSR.Find-My-Vac";
@@ -435,6 +436,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B59S6WSQJH;
 				INFOPLIST_FILE = "Find My VacTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "HSR.Find-My-VacTests";
@@ -449,6 +451,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B59S6WSQJH;
 				INFOPLIST_FILE = "Find My VacTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "HSR.Find-My-VacTests";
