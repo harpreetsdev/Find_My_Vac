@@ -288,7 +288,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
        
         if segue.identifier == "SegueToDetailVC" {
             
-            if let destinationVC = segue.destination as? ResultViewController {
+            if let destinationVC = segue.destination as? ResultTableViewController {
                 
                 //let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
            
