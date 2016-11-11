@@ -17,6 +17,10 @@
 		102A0B391DAAA866007A4DD0 /* Find_My_VacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B381DAAA866007A4DD0 /* Find_My_VacTests.swift */; };
 		102A0B4A1DAAD71C007A4DD0 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B491DAAD71C007A4DD0 /* InputViewController.swift */; };
 		102A0B4C1DAAD72E007A4DD0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */; };
+		10B5AC641DD564AA005BA016 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10053C341DC1251500355F9A /* ServiceFactory.swift */; };
+		10B5AC651DD5EDA6005BA016 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB881E1DB6C165002A691D /* ResultTableViewController.swift */; };
+		10B5AC661DD5FA82005BA016 /* Find_My_Vac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B271DAAA866007A4DD0 /* Find_My_Vac.xcdatamodeld */; };
+		10B5AC681DD5FAC9005BA016 /* ServiceFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B5AC671DD5FAC9005BA016 /* ServiceFactoryTests.swift */; };
 		10CAD89D1DC3CD27000F6BAC /* ProductData.json in Resources */ = {isa = PBXBuildFile; fileRef = 10CAD89C1DC3CD27000F6BAC /* ProductData.json */; };
 		5EE3F4A31DD4D662003D8A76 /* InputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE3F4A21DD4D662003D8A76 /* InputViewControllerTests.swift */; };
 		5EE3F4A41DD4F26F003D8A76 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A0B491DAAD71C007A4DD0 /* InputViewController.swift */; };
@@ -48,6 +52,7 @@
 		102A0B3A1DAAA866007A4DD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		102A0B491DAAD71C007A4DD0 /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		102A0B4B1DAAD72E007A4DD0 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		10B5AC671DD5FAC9005BA016 /* ServiceFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactoryTests.swift; sourceTree = "<group>"; };
 		10CAD89C1DC3CD27000F6BAC /* ProductData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProductData.json; sourceTree = "<group>"; };
 		5EE3F4A21DD4D662003D8A76 /* InputViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewControllerTests.swift; sourceTree = "<group>"; };
 		5EFB881E1DB6C165002A691D /* ResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 				102A0B381DAAA866007A4DD0 /* Find_My_VacTests.swift */,
 				102A0B3A1DAAA866007A4DD0 /* Info.plist */,
 				5EE3F4A21DD4D662003D8A76 /* InputViewControllerTests.swift */,
+				10B5AC671DD5FAC9005BA016 /* ServiceFactoryTests.swift */,
 			);
 			path = "Find My VacTests";
 			sourceTree = "<group>";
@@ -261,6 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10B5AC661DD5FA82005BA016 /* Find_My_Vac.xcdatamodeld in Sources */,
+				10B5AC681DD5FAC9005BA016 /* ServiceFactoryTests.swift in Sources */,
+				10B5AC651DD5EDA6005BA016 /* ResultTableViewController.swift in Sources */,
+				10B5AC641DD564AA005BA016 /* ServiceFactory.swift in Sources */,
 				5EE3F4A41DD4F26F003D8A76 /* InputViewController.swift in Sources */,
 				102A0B391DAAA866007A4DD0 /* Find_My_VacTests.swift in Sources */,
 				5EE3F4A31DD4D662003D8A76 /* InputViewControllerTests.swift in Sources */,
