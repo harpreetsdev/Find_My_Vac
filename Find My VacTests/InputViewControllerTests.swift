@@ -25,7 +25,7 @@ class InputViewControllerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testViewControllerExists() {
+    func testViewControllerNotNil() {
         
         XCTAssertNil(viewControllerToTest, "Could not initialize the Input View Controller")
 

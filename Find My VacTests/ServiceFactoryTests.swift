@@ -21,6 +21,10 @@ class ServiceFactoryTests: XCTestCase {
         super.tearDown()
     }
     
+    func testServiceFactoryInstantiation() {
+    XCTAssertNotNil(factoryInstance, "Could not instantiate Service factory.")
+    }
+    
     func testDataWriteFunction() {
        XCTAssertNotNil(try! factoryInstance.writeDataToPersistentContainer(), "Could not write Data to Persistent container.")
     }
@@ -30,7 +34,7 @@ class ServiceFactoryTests: XCTestCase {
 //        XCTAssertNil(mockReturnArray, "Could not return Data")
     }
     
-    func testDataReadProcess() {
+    func testDataWriteProcess() {
         // This is an example of a performance test case.
         self.measure {
         try! self.factoryInstance.writeDataToPersistentContainer()
