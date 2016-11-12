@@ -42,23 +42,23 @@ class ServiceFactory: NSObject {
         // Interating through the Array created
         for singleObject in jsonArray {
             
-            guard let jsonDictionary = singleObject as? Dictionary<String, Any> else {
-            throw CoreDataError.WriteFailed
-            }
+        guard let jsonDictionary = singleObject as? NSDictionary else {
+        throw CoreDataError.WriteFailed
+        }
             
         let product = insertNewEntity(name: "Product") as! Product
             
-        // Writing the entire Array of Dictionaries to NSManageObject
-        
-        product.cellImage = jsonDictionary["cellImage"] as! String? //(value as! Dictionary)["cellImage"]!
-        product.detailPageProductImage = jsonDictionary["detailPageProductImage"] as! String? //(value as! Dictionary)["detailPageProductImage"]
-        product.detailPageProductTitle = jsonDictionary["detailPageProductTitle"] as! String? //(value as! Dictionary)["detailPageProductTitle"]
-        product.priceRange = jsonDictionary["priceRange"] as! String? //(value as! Dictionary)["priceRange"]
-        product.menuScreenTitle = jsonDictionary["menuScreenTitle"] as! String? //(value as! Dictionary)["menuScreenTitle"]
-        product.productFeatureText = jsonDictionary["productFeatureText"] as! String? //(value as! Dictionary)["productFeatureText"]
-        product.seq = jsonDictionary["seq"] as! String? //(value as! Dictionary)["seq"]
-        product.vacuumType = jsonDictionary["vacuumType"] as! String? //(value as! Dictionary)["vacuumType"]
-        product.productType = jsonDictionary["productType"] as! String? //(value as! Dictionary)["productType"]
+        // Writing the entire Array of Dictionaries to NSManageObject "Product"
+            
+        product.cellImage = jsonDictionary.value(forKey: "cellImage") as! String?
+        product.detailPageProductImage = jsonDictionary.value(forKey: "detailPageProductImage") as! String? 
+        product.detailPageProductTitle = jsonDictionary.value(forKey: "detailPageProductTitle") as! String?
+        product.priceRange = jsonDictionary.value(forKey: "priceRange") as! String?
+        product.menuScreenTitle = jsonDictionary.value(forKey: "menuScreenTitle") as! String?
+        product.productFeatureText = jsonDictionary.value(forKey: "productFeatureText") as! String?
+        product.seq = jsonDictionary.value(forKey: "seq") as! String?
+        product.vacuumType = jsonDictionary.value(forKey: "vacuumType") as! String?
+        product.productType = jsonDictionary.value(forKey: "productType") as! String?
         
         }
         saveContext()
