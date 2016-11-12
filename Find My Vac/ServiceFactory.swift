@@ -118,7 +118,7 @@ class ServiceFactory: NSObject {
         var productArray : Array<Any> = []
         
         let context = persistentContainer.viewContext
-        //var persistentStoreRes = [NSPersistentStoreResult]()
+        var persistentStoreRes = [NSPersistentStoreResult]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Product")    //NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
         //let predicateString = category
         //let fetchPredicate = NSPredicate(format: "priceRange in[c] %@", category)
