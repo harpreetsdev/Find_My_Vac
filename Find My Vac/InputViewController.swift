@@ -82,7 +82,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         submitButton.setBackgroundImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
         //let error:NSError?
         factoryInstance = ServiceFactory.sharedInstance
-        try? factoryInstance.writeDataToPersistentContainer()
+//       try? factoryInstance.writeDataToPersistentContainer()
 //        let objectArray = try? factoryInstance.returnSpecificCategoryVacs()
 //        print(objectArray)
     }

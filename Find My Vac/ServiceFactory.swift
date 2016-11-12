@@ -5,7 +5,7 @@
 //  Created by HARPREET SINGH on 10/26/16.
 //  Copyright © 2016 HARPREET SINGH. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import CoreData
 
@@ -14,35 +14,21 @@ class ServiceFactory: NSObject {
     //var managedObjectContext : NSManagedObjectContext
     
     override init() {
-//        guard let modelURL = Bundle.main.url(forResource: "Find_My_Vac", withExtension: "momd") else {
-//            fatalError("Error loading the bundle")
-//        }
-//        guard let managedModel = NSManagedObjectModel.init(contentsOf: modelURL) else {
-//            fatalError("Error initializing the Model")
-//        }
-//        
-//        let persistentStoreCoord = NSPersistentStoreCoordinator(managedObjectModel: managedModel)
-//        managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-//        managedObjectContext.persistentStoreCoordinator = persistentStoreCoord
-//        
-//        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        let docURL = urls[urls.endIndex-1]
-//        
-//        let storeURL = docURL.appendingPathComponent("Find_My_Vac.sqlite")
-//        
-//        do {
-//            try persistentStoreCoord.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
-//        } catch  {
-//            fatalError("Could not initialzie the Persistent store coordinator")
-//        }
-        
+        super.init()
+        do {
+            try writeDataToPersistentContainer()
+        } catch  {
+            fatalError("Cannot write the data to persistent container with error = \(error)")
+        }
         
     }
-    enum CoreDataError:Error {
+    enum CoreDataError:String, Error{
     
-        case WriteFailed
-        case ReadFailed
-        case DataConversionFailed
+        case WriteFailed = "Could not write data to store"
+        case ReadFailed = "Could not read value from the store."
+        case DataConversionFailed = "Could not convert into Data"
+        case JSONParsingFailed = "Could not parse JSON"
+        case StoreCreationFailed = "Could not create Persistent store in the App Sandbox"
     
     }
     static let sharedInstance = ServiceFactory()
@@ -51,66 +37,54 @@ class ServiceFactory: NSObject {
     
     func writeDataToPersistentContainer()  throws {
         
-       var jsonArray:Array<Any>
-       let context = persistentContainer.viewContext
-       //let psc = persistentContainer.persistentStoreCoordinator
-       let storeURL = persistentContainer.persistentStoreDescriptions.first?.url //applicationDocumentsDirectory.appendingPathComponent("Find_My_Vac.sqlite")
-       
-//        do {
-//            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
-//        } catch  {
-//            fatalError("Could not initialzie the Persistent store coordinator")
-//        }
-        
-        let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: (storeURL?.absoluteString)!) {
-        //try! fileManager.createDirectory(at: (storeURL)!, withIntermediateDirectories: true, attributes: nil)
-        }
-        else {
-        print("No file exists at path.")
-        }
-        //       let coordinator = self.persistentContainer.persistentStoreCoordinator
-       // Create the path to json file
-       let path = Bundle.main.path(forResource: "ProductData", ofType: "json")
-       let productURL = URL.init(fileURLWithPath: path!)
-        
-        // Converting the string file to Data
-        
-        guard let jsonData = try? Data(contentsOf: productURL) else {
-        fatalError("Error converting String to Data")
-        }
-        // Serializing the data through JSONSerialization class
-        
-        jsonArray = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! Array<Any>
-        
-//        guard let jsonArray as NSDictionary else {
-//        fatalError("Could not convert into dictionary")
-//        }
+        let jsonArray = try! getJSONArray(forJSONFile:"ProductData")
         
         // Interating through the Array created
-        for (index, value) in jsonArray.enumerated() {
+        for singleObject in jsonArray {
             
-        let productEntity = NSEntityDescription.entity(forEntityName:"Product", in: context)
-        let product = NSManagedObject(entity: productEntity!, insertInto: context) as! Product
-  //      let product = insertNewEntity(name: "Product") as! Product
+            guard let jsonDictionary = singleObject as? Dictionary<String, Any> else {
+            throw CoreDataError.WriteFailed
+            }
+            
+        let product = insertNewEntity(name: "Product") as! Product
             
         // Writing the entire Array of Dictionaries to NSManageObject
         
-        print(index)
-        //print(value)
-        product.cellImage = (value as! Dictionary)["cellImage"]!
-        product.detailPageProductImage = (value as! Dictionary)["detailPageProductImage"]
-        product.detailPageProductTitle = (value as! Dictionary)["detailPageProductTitle"]
-        product.priceRange = (value as! Dictionary)["priceRange"]
-        product.menuScreenTitle = (value as! Dictionary)["menuScreenTitle"]
-        product.productFeatureText = (value as! Dictionary)["productFeatureText"]
-        product.seq = (value as! Dictionary)["seq"]
-        product.vacuumType = (value as! Dictionary)["vacuumType"]
-        product.productType = (value as! Dictionary)["productType"]
+        product.cellImage = jsonDictionary["cellImage"] as! String? //(value as! Dictionary)["cellImage"]!
+        product.detailPageProductImage = jsonDictionary["detailPageProductImage"] as! String? //(value as! Dictionary)["detailPageProductImage"]
+        product.detailPageProductTitle = jsonDictionary["detailPageProductTitle"] as! String? //(value as! Dictionary)["detailPageProductTitle"]
+        product.priceRange = jsonDictionary["priceRange"] as! String? //(value as! Dictionary)["priceRange"]
+        product.menuScreenTitle = jsonDictionary["menuScreenTitle"] as! String? //(value as! Dictionary)["menuScreenTitle"]
+        product.productFeatureText = jsonDictionary["productFeatureText"] as! String? //(value as! Dictionary)["productFeatureText"]
+        product.seq = jsonDictionary["seq"] as! String? //(value as! Dictionary)["seq"]
+        product.vacuumType = jsonDictionary["vacuumType"] as! String? //(value as! Dictionary)["vacuumType"]
+        product.productType = jsonDictionary["productType"] as! String? //(value as! Dictionary)["productType"]
         
-        //saveContext()
         }
         saveContext()
+    }
+    
+    func getJSONArray(forJSONFile file:String) throws -> Array<Any> {
+        //var jsonDictionary:Dictionary<String, Any>
+        var jsonArray:Array<Any> = []
+        // Create the path to json file
+        let path = Bundle.main.path(forResource: file, ofType: "json")
+        let productURL = URL(fileURLWithPath: path!) //.init(fileURLWithPath: path!)
+        
+        // Converting the string file to Data
+        guard let jsonData = try? Data(contentsOf: productURL) else {
+            fatalError("Error converting String to Data")
+        }
+        
+        // Serializing the data through JSONSerialization class
+        jsonArray = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Any>
+        //        for singleObject in jsonArray {
+//            
+//                jsonDictionary = (singleObject as? Dictionary<String, Any>)!
+//                 
+//        }
+        return jsonArray
+
     }
     
     func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Any>{
@@ -118,7 +92,7 @@ class ServiceFactory: NSObject {
         var productArray : Array<Any> = []
         
         let context = persistentContainer.viewContext
-        var persistentStoreRes = [NSPersistentStoreResult]()
+        //var persistentStoreRes = [NSPersistentStoreResult]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Product")    //NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
         //let predicateString = category
         //let fetchPredicate = NSPredicate(format: "priceRange in[c] %@", category)
@@ -195,6 +169,7 @@ class ServiceFactory: NSObject {
     }
 
     func insertNewEntity(name:String) -> NSManagedObject {
-    return NSEntityDescription.insertNewObject(forEntityName: name, into: persistentContainer.viewContext)
+    let context = persistentContainer.viewContext
+    return NSEntityDescription.insertNewObject(forEntityName: name, into: context)
     }
 }
