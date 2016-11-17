@@ -37,6 +37,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var returnString:String = ""
     var factoryInstance = ServiceFactory()
     
+    
     override func viewWillAppear(_ animated: Bool) {
         print("View will appear")
             }
@@ -82,6 +83,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         submitButton.setBackgroundImage(UIImage(named:"BackgroundImage1"), for: UIControlState.normal)
         //let error:NSError?
         factoryInstance = ServiceFactory.sharedInstance
+//        let jsonReturn = try! factoryInstance.getJSONArray(forJSONFile: "ProductData")
+//        print(jsonReturn)
 //       try? factoryInstance.writeDataToPersistentContainer()
 //        let objectArray = try? factoryInstance.returnSpecificCategoryVacs()
 //        print(objectArray)
@@ -167,8 +170,10 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     print(returnedString)
         
         do {
-            let objArray = try factoryInstance.returnSpecificCategoryVacs(forCategory: returnedString, sortedBy: "priceRange")
-            print("Returned Array = \(objArray[0] as? NSDictionary)")
+            
+            let objArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString)
+//            let objArray = try factoryInstance.returnSpecificCategoryVacs(forCategory: returnedString, sortedBy: "priceRange")
+            print("Returned Array = \(objArray)")
         }
         catch  {
             print("Error = \(error)")

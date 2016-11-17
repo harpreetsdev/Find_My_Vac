@@ -15,11 +15,11 @@ class ServiceFactory: NSObject {
     
     override init() {
         super.init()
-        do {
-            try writeDataToPersistentContainer()
-        } catch  {
-            fatalError("Cannot write the data to persistent container with error = \(error)")
-        }
+//        do {
+//            try writeDataToPersistentContainer()
+//        } catch  {
+//            fatalError("Cannot write the data to persistent container with error = \(error)")
+//        }
         
     }
     enum CoreDataError:String, Error{
@@ -37,7 +37,7 @@ class ServiceFactory: NSObject {
     
     func writeDataToPersistentContainer()  throws {
         
-        let jsonArray = try! getJSONArray(forJSONFile:"ProductData")
+        let jsonArray = try! getJSONArray(forJSONFile: "", forPredicate: "")
         
         // Interating through the Array created
         for singleObject in jsonArray {
@@ -64,13 +64,14 @@ class ServiceFactory: NSObject {
         saveContext()
     }
     
-    func getJSONArray(forJSONFile file:String) throws -> Array<Any> {
+    func getJSONArray(forJSONFile file:String, forPredicate predString:String) throws -> Array<Any> {
         //var jsonDictionary:Dictionary<String, Any>
         var jsonArray:Array<Any> = []
         // Create the path to json file
         let path = Bundle.main.path(forResource: file, ofType: "json")
         let productURL = URL(fileURLWithPath: path!) //.init(fileURLWithPath: path!)
         
+        //let predicate = NSPredicate(format: predString, argumentArray: [])
         // Converting the string file to Data
         guard let jsonData = try? Data(contentsOf: productURL) else {
             fatalError("Error converting String to Data")
@@ -83,38 +84,91 @@ class ServiceFactory: NSObject {
 //                jsonDictionary = (singleObject as? Dictionary<String, Any>)!
 //                 
 //        }
-        return jsonArray
+        var filteredArray:Array<Any> = []
+        for singleObject in jsonArray {
+            
+            guard let singleDictionary = singleObject as? Dictionary<String, String> else {
+            throw CoreDataError.JSONParsingFailed
+            }
+            
+            
+            
+            //let valueString1 = singleDictionary.value(forKey: "priceRange")
+            
+            let prValueString = singleDictionary["priceRange"]
+            
+            do {
+                
+            try! jsonArray.filter({(prValueString) -> Bool in
+             
+                if (prValueString as AnyObject).description  == predString {
+                    
+                    filteredArray.append(singleDictionary)
+                }
+                
+                    return false
+                
+                
+           })
+            } catch {
+                fatalError("Could not filter")
+            }
+//            for (key, value) in singleDictionary{
+//                print("...\(singleDictionary.allKeys)...\(key) == \(value)")
+//                
+//            }
+       
+            
+            
+//       return (singleDictionary.value(forKey: "priceRange") != nil)
+//        let filteredArray = jsonArray.filter { singleObject in
+//        
+//            guard let singleDictionary = singleObject as? NSDictionary else {
+//            fatalError("Could not parse the dictionary")
+//            }
+//            return (singleDictionary.value(forKey: "priceRange") != nil)
+//        }
+ //       return filteredArray
+        }
+        return filteredArray
 
     }
     
-    func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Any>{
+    func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Dictionary<String, String>>{
         
         var productArray : Array<Any> = []
         
         let context = persistentContainer.viewContext
         //var persistentStoreRes = [NSPersistentStoreResult]()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Product")    //NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Product")
         //let predicateString = category
-        //let fetchPredicate = NSPredicate(format: "priceRange in[c] %@", category)
+        let fetchPredicate = NSPredicate(format: "priceRange in[c] %@", category)
         let sortDescriptor = NSSortDescriptor(key: sort, ascending: true)
         let descriptors = [sortDescriptor]
-        //fetchRequest.predicate = fetchPredicate
+        fetchRequest.predicate = fetchPredicate
         fetchRequest.sortDescriptors = descriptors
     
         //do {
-         productArray = [try context.execute(fetchRequest)] as Array<Any>
+        // productArray = try context.execute(fetchRequest)] as Array<Any>
+        
+        
+        guard let returnedArray = try? context.fetch(fetchRequest) as? [Any] else {
+            throw CoreDataError.ReadFailed
+        }
             
+            //for (index, value) in productArray.enumerated() {
+        for singleObject in returnedArray! {
+            guard let returnDictionary = singleObject as? NSDictionary else {throw CoreDataError.ReadFailed}
             
-            for (index, value) in productArray.enumerated() {
-
-            print("Item index = \(index)")
-            print("Item value = \(value as? NSDictionary)")
-            return productArray
-            }
+            print(returnDictionary)
+                //return productArray as! Array<Dictionary<String, String>>
+                
+            //}
+        }
         //} catch  {
           //  print("Error reading from disk =\(error)")
         //}
-        return productArray
+        return productArray as! Array<Dictionary<String, String>>
     
     }
     // MARK: - Core Data stack
