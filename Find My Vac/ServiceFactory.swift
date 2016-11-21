@@ -65,13 +65,12 @@ class ServiceFactory: NSObject {
     }
     
     func getJSONArray(forJSONFile file:String, forPredicate predString:String) throws -> Array<Any> {
-        //var jsonDictionary:Dictionary<String, Any>
+
         var jsonArray:Array<Any> = []
         // Create the path to json file
         let path = Bundle.main.path(forResource: file, ofType: "json")
         let productURL = URL(fileURLWithPath: path!) //.init(fileURLWithPath: path!)
         
-        //let predicate = NSPredicate(format: predString, argumentArray: [])
         // Converting the string file to Data
         guard let jsonData = try? Data(contentsOf: productURL) else {
             fatalError("Error converting String to Data")
@@ -79,61 +78,24 @@ class ServiceFactory: NSObject {
         
         // Serializing the data through JSONSerialization class
         jsonArray = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Any>
-        //        for singleObject in jsonArray {
-//            
-//                jsonDictionary = (singleObject as? Dictionary<String, Any>)!
-//                 
-//        }
-        var filteredArray:Array<Any> = []
-        for singleObject in jsonArray {
-            
-            guard let singleDictionary = singleObject as? Dictionary<String, String> else {
-            throw CoreDataError.JSONParsingFailed
-            }
-            
-            
-            
-            //let valueString1 = singleDictionary.value(forKey: "priceRange")
-            
-            let prValueString = singleDictionary["priceRange"]
-            
-            do {
-                
-            try! jsonArray.filter({(prValueString) -> Bool in
-             
-                if (prValueString as AnyObject).description  == predString {
-                    
-                    filteredArray.append(singleDictionary)
-                }
-                
-                    return false
-                
-                
-           })
-            } catch {
-                fatalError("Could not filter")
-            }
-//            for (key, value) in singleDictionary{
-//                print("...\(singleDictionary.allKeys)...\(key) == \(value)")
-//                
-//            }
-       
-            
-            
-//       return (singleDictionary.value(forKey: "priceRange") != nil)
-//        let filteredArray = jsonArray.filter { singleObject in
-//        
-//            guard let singleDictionary = singleObject as? NSDictionary else {
-//            fatalError("Could not parse the dictionary")
-//            }
-//            return (singleDictionary.value(forKey: "priceRange") != nil)
-//        }
- //       return filteredArray
+
+        guard let jsonDictionary = jsonArray as? Array<Dictionary<String, String>> else {
+        throw CoreDataError.DataConversionFailed
         }
+        var filteredArray:Array<Dictionary<String, String>>!
+        for singleObject in jsonDictionary {
+         
+        // Filtering through JSON Dictionary to based on the Predicate String
+        filteredArray = jsonDictionary.filter({$0["priceRange"] == predString})
+        print(filteredArray.count)
+        }
+        
         return filteredArray
 
-    }
-    
+}
+
+
+
     func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Dictionary<String, String>>{
         
         var productArray : Array<Any> = []
