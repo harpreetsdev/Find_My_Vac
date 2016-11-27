@@ -87,7 +87,7 @@ class ServiceFactory: NSObject {
          
         // Filtering through JSON Dictionary to based on the Predicate String
         filteredArray = jsonDictionary.filter({$0["priceRange"] == predString})
-        print(filteredArray.count)
+        //print(filteredArray.count)
         }
         
         return filteredArray
@@ -114,12 +114,12 @@ class ServiceFactory: NSObject {
         // productArray = try context.execute(fetchRequest)] as Array<Any>
         
         
-        guard let returnedArray = try? context.fetch(fetchRequest) as? [Any] else {
+        guard let returnedArray = try? context.fetch(fetchRequest) else {
             throw CoreDataError.ReadFailed
         }
             
             //for (index, value) in productArray.enumerated() {
-        for singleObject in returnedArray! {
+        for singleObject in returnedArray {
             guard let returnDictionary = singleObject as? NSDictionary else {throw CoreDataError.ReadFailed}
             
             print(returnDictionary)

@@ -10,6 +10,7 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    var objArray : Array<Dictionary<String, String>> = []
     
 //    enum CoreDataError: Error {
 //        case jsonWriteFailed
@@ -171,9 +172,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         
         do {
             
-            let objArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString)
-//            let objArray = try factoryInstance.returnSpecificCategoryVacs(forCategory: returnedString, sortedBy: "priceRange")
-            print("Returned Array = \(objArray)")
+            objArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString) as! Array<Dictionary<String, String>>
+            print("Number of objects = \(objArray.count)")
         }
         catch  {
             print("Error = \(error)")
@@ -294,6 +294,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         if segue.identifier == "SegueToDetailVC" {
             
             if let destinationVC = segue.destination as? ResultTableViewController {
+                
+                destinationVC.customCell.totalNumLabel?.text = String(objArray.count)
                 
                 //let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
            

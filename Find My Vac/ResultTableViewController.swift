@@ -9,7 +9,8 @@
 import UIKit
 
 class ResultTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+ 
+    var customCell = CustomResultCell()
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 //        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 //        // Custom initialization
@@ -59,41 +60,79 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
-    
         
-        switch tableView.tag {
-        case 1:
-            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
-
-            cell.vacuumTypeLabel?.text = "UprightVacs"
-            cell.totalNumLabel?.text = "10"
-            
-        case 2:
-            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
-
-            cell.vacuumTypeLabel?.text = "Canistervacuums1"
-            cell.totalNumLabel?.text = "15"
-        case 3:
-            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
-
-            cell.vacuumTypeLabel?.text = "Handheldvacuums2"
-            cell.totalNumLabel?.text = "10"
-        default:
-           // let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
-
-            cell.vacuumTypeLabel?.text = ""
+        //guard let renderedCell = customCell else {}
+        
+        customCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+        
+        if tableView.tag == 1 {
+            customCell.vacuumTypeLabel?.text = "UprightVacs"
+            customCell.totalNumLabel?.text = "10"
         }
         
+        if tableView.tag == 2 {
+            customCell.vacuumTypeLabel?.text = "Canistervacuums1"
+            customCell.totalNumLabel?.text = "10"
+
+        }
+        
+        if tableView.tag == 3 {
+            customCell.vacuumTypeLabel?.text = "Canistervacuums1"
+            customCell.totalNumLabel?.text = "10"
+        }
+        
+//        switch tableView.tag {
+//        case 1:
+//            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+//
+//            customCell.vacuumTypeLabel?.text = "UprightVacs"
+//            customCell.totalNumLabel?.text = "10"
+//            
+//        case 2: break
+//            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+//
+////            cell.vacuumTypeLabel?.text = "Canistervacuums1"
+////            cell.totalNumLabel?.text = "15"
+//        case 3: break
+//            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+//
+////            cell.vacuumTypeLabel?.text = "Handheldvacuums2"
+////            cell.totalNumLabel?.text = "10"
+//        default:
+//           // let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+//
+//            customCell.vacuumTypeLabel?.text = ""
+//        }
         
         
-    return cell
+        
+        return customCell
 
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        print("Tapped on table number \(tableView.tag)")
+        switch tableView.tag {
+        case 1:
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+            
+            print("Tapped on the number \(tableView.tag) table")
+            
+        case 2:
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+            print("Tapped on the number \(tableView.tag) table")
+            //            cell.vacuumTypeLabel?.text = "Canistervacuums1"
+        //            cell.totalNumLabel?.text = "15"
+        case 3: 
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+            print("Tapped on the number \(tableView.tag) table")
+            //            cell.vacuumTypeLabel?.text = "Handheldvacuums2"
+        //            cell.totalNumLabel?.text = "10"
+        default:
+            // let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+            
+            customCell.vacuumTypeLabel?.text = ""
+        }
     }
     
 //    func returnCustomCell(thumbnailImageView:UIImageView, vacuumTypeLogo:UILabel, totalLabel:UILabel, disclosureImageView:UIImageView)->UITableViewCell{

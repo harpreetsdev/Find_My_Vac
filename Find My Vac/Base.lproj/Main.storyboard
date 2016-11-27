@@ -45,7 +45,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.84999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="05N-gK-ES9" userLabel="Backgroundview">
-                                <rect key="frame" x="0.0" y="0.0" width="395" height="685"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.12156862745098039" green="0.3843137254901961" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -85,12 +85,12 @@
                                     <segue destination="eIO-Q6-MpD" kind="presentation" identifier="ToTableViewController" modalTransitionStyle="flipHorizontal" id="YNG-qK-gub"/>
                                 </connections>
                             </button>
-                            <pickerView tag="1" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="D2B-WJ-aDs" userLabel="Hardwood picker view">
-                                <rect key="frame" x="394" y="44" width="0.0" height="216"/>
+                            <pickerView tag="1" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2B-WJ-aDs" userLabel="Hardwood picker view">
+                                <rect key="frame" x="175" y="191" width="220" height="70"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.75" height="1"/>
                             </pickerView>
-                            <pickerView tag="2" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-62-Dbm" userLabel="Carpet Picker view">
-                                <rect key="frame" x="394" y="280" width="0.0" height="70"/>
+                            <pickerView tag="2" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-62-Dbm" userLabel="Carpet Picker view">
+                                <rect key="frame" x="175" y="280" width="220" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Hj6-kb-121"/>
@@ -98,7 +98,7 @@
                                 </constraints>
                             </pickerView>
                             <pickerView tag="3" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qVe-bM-ePs" userLabel="Pet picker view">
-                                <rect key="frame" x="175" y="358" width="219" height="70"/>
+                                <rect key="frame" x="175" y="358" width="220" height="70"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input information below to find a vacuum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-KL-Yrc">
                                 <rect key="frame" x="26" y="111" width="362" height="54"/>
@@ -110,7 +110,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView tag="4" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaY-qP-2Ih" userLabel="Living area picker view">
-                                <rect key="frame" x="175" y="434" width="219" height="70"/>
+                                <rect key="frame" x="175" y="434" width="220" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Epm-R7-wFE"/>
                                 </constraints>
@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Q3-Gn-0vl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3332" y="625.63718140929541"/>
+            <point key="canvasLocation" x="-3333.3333333333335" y="625.27173913043487"/>
         </scene>
         <!--Results Table View Controller-->
         <scene sceneID="9CJ-1w-yEk">

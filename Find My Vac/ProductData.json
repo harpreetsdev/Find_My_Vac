@@ -37,7 +37,7 @@
   },
   {
   "seq":"4",
-  "priceRange":"MediumRange",
+  "priceRange":"SmallRange",
   "vacuumType":"upright",
   "fetch":"",
   "productType":"AirPurifier",
@@ -49,7 +49,7 @@
   },
   {
   "seq":"5",
-  "priceRange":"MediumRange",
+  "priceRange":"LargeRange",
   "vacuumType":"upright",
   "fetch":"",
   "productType":"AirPurifier",
@@ -97,7 +97,7 @@
   },
   {
   "seq":"9",
-  "priceRange":"SmallRange",
+  "priceRange":"MediumRange",
   "vacuumType":"upright",
   "fetch":"",
   "productType":"ReplacementPart",
