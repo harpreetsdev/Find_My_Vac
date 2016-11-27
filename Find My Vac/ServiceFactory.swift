@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ServiceFactory: NSObject {
-    
+    var filteredArray:Array<Dictionary<String, String>>!
     //var managedObjectContext : NSManagedObjectContext
     
     override init() {
@@ -64,6 +64,26 @@ class ServiceFactory: NSObject {
         saveContext()
     }
     
+    func getUprightVacuumArray() ->Array<Dictionary<String, String>> {
+    
+        return filteredArray.filter({$0["vacuumType"] == "upright"})
+        
+        }
+    
+    func getCanisterVacuumArray() ->Array<Dictionary<String, String>> {
+        
+        return filteredArray.filter({$0["vacuumType"] == "canister"})
+        
+    }
+    
+    func gethandHeldVacuumArray() ->Array<Dictionary<String, String>> {
+        
+        return filteredArray.filter({$0["vacuumType"] == "handHeld"})
+        
+    }
+    
+    
+    
     func getJSONArray(forJSONFile file:String, forPredicate predString:String) throws -> Array<Any> {
 
         var jsonArray:Array<Any> = []
@@ -82,7 +102,7 @@ class ServiceFactory: NSObject {
         guard let jsonDictionary = jsonArray as? Array<Dictionary<String, String>> else {
         throw CoreDataError.DataConversionFailed
         }
-        var filteredArray:Array<Dictionary<String, String>>!
+        
         for singleObject in jsonDictionary {
          
         // Filtering through JSON Dictionary to based on the Predicate String
@@ -95,7 +115,7 @@ class ServiceFactory: NSObject {
 }
 
 
-
+    
     func returnSpecificCategoryVacs(forCategory category:String, sortedBy sort:String) throws ->Array<Dictionary<String, String>>{
         
         var productArray : Array<Any> = []

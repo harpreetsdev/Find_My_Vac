@@ -173,12 +173,20 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         do {
             
             objArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString) as! Array<Dictionary<String, String>>
-            print("Number of objects = \(objArray.count)")
+            //print("Number of objects = \(objArray.count)")
+            
         }
         catch  {
             print("Error = \(error)")
         }
-
+      
+        let uprightArray = objArray.filter({$0["vacuumType"] == "upright"})
+        let canisterArray = objArray.filter({$0["vacuumType"] == "canister"})
+        let handHeldArray = objArray.filter({$0["vacuumType"] == "handHeld"})
+        
+        print("Uprights = \(uprightArray.count)")
+        print("Canisters = \(canisterArray.count)")
+        print("Handhelds = \(handHeldArray.count)")
         
     }
     

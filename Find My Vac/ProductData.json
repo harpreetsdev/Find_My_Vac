@@ -13,7 +13,7 @@
   },
   {
   "seq":"2",
-  "priceRange":"MediumRange",
+  "priceRange":"SmallRange",
   "vacuumType":"upright",
   "fetch":"no",
   "productType":"VacuumCleaner",
@@ -26,7 +26,7 @@
   {
   "seq":"3",
   "priceRange":"SmallRange",
-  "vacuumType":"upright",
+  "vacuumType":"canister",
   "fetch":"yes",
   "productType":"AirPurifier",
   "menuScreenTitle":"AIR PURIFIERS",
@@ -38,7 +38,7 @@
   {
   "seq":"4",
   "priceRange":"SmallRange",
-  "vacuumType":"upright",
+  "vacuumType":"canister",
   "fetch":"",
   "productType":"AirPurifier",
   "menuScreenTitle":"AIR PURIFIERS",
@@ -49,8 +49,8 @@
   },
   {
   "seq":"5",
-  "priceRange":"LargeRange",
-  "vacuumType":"upright",
+  "priceRange":"SmallRange",
+  "vacuumType":"handHeld",
   "fetch":"",
   "productType":"AirPurifier",
   "menuScreenTitle":"",
@@ -62,7 +62,7 @@
   {
   "seq":"6",
   "priceRange":"LargeRange",
-  "vacuumType":"upright",
+  "vacuumType":"handHeld",
   "fetch":"",
   "productType":"VacuumCleaner",
   "menuScreenTitle":"",
@@ -74,7 +74,7 @@
   {
   "seq":"7",
   "priceRange":"LargeRange",
-  "vacuumType":"upright",
+  "vacuumType":"handHeld",
   "fetch":"yes",
   "productType":"ReplacementPart",
   "menuScreenTitle":"REPLACEMENTS PARTS",
@@ -86,7 +86,7 @@
   {
   "seq":"8",
   "priceRange":"MediumRange",
-  "vacuumType":"upright",
+  "vacuumType":"handHeld",
   "fetch":"",
   "productType":"ReplacementPart",
   "menuScreenTitle":"",
@@ -98,7 +98,7 @@
   {
   "seq":"9",
   "priceRange":"MediumRange",
-  "vacuumType":"upright",
+  "vacuumType":"handHeld",
   "fetch":"",
   "productType":"ReplacementPart",
   "menuScreenTitle":"",
