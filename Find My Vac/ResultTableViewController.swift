@@ -9,8 +9,10 @@
 import UIKit
 
 class ResultTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
- 
+    
+    var finalString:String?
     var customCell = CustomResultCell()
+    var factoryInstance : ServiceFactory?
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 //        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 //        // Custom initialization
@@ -27,15 +29,15 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var handVaccumTabelView: UITableView!
     @IBOutlet weak var canisterVacuumTableView: UITableView!
     @IBOutlet weak var vacuumTypeLabel: UILabel!
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
 
         setUpView()
         // Do any additional setup after loading the view.
     }
     
     func setUpView() {
+        factoryInstance = ServiceFactory.sharedInstance
         uprightVacuumTableView.delegate = self
         uprightVacuumTableView.dataSource = self
         uprightVacuumTableView.layer.cornerRadius = 8
@@ -123,7 +125,7 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
             print("Tapped on the number \(tableView.tag) table")
             //            cell.vacuumTypeLabel?.text = "Canistervacuums1"
         //            cell.totalNumLabel?.text = "15"
-        case 3: 
+        case 3:
             //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
             print("Tapped on the number \(tableView.tag) table")
             //            cell.vacuumTypeLabel?.text = "Handheldvacuums2"
@@ -163,7 +165,32 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
 
 }
 
-class CustomResultCell: UITableViewCell {
+
+//
+//    let uprightArray = priceRangeArray.filter({$0["vacuumType"] == "upright"})
+//    let canisterArray = priceRangeArray.filter({$0["vacuumType"] == "canister"})
+//    let handHeldArray = priceRangeArray.filter({$0["vacuumType"] == "handHeld"})
+//
+//    print("Uprights = \(uprightArray.count)")
+//    print("Canisters = \(canisterArray.count)")
+//    print("Handhelds = \(handHeldArray.count)")
+
+    func returnPriceRangeArray()->Array<Dictionary<String, String>> {
+        var priceRangeArray:Array<Dictionary<String, String>> = []
+        do {
+            
+            priceRangeArray = try ServiceFactory.sharedInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: "") as! Array<Dictionary<String, String>>
+            //print("Number of objects = \(objArray.count)")
+            
+        }
+        catch  {
+            print("Error = \(error)")
+        }
+
+        return priceRangeArray
+    }
+
+    class CustomResultCell: UITableViewCell {
 //    var disclosureImageView = UIImageView()
     
     @IBOutlet weak var vacuumTypeLabel = UILabel()

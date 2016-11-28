@@ -10,7 +10,7 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    var objArray : Array<Dictionary<String, String>> = []
+    var priceRangeArray : Array<Dictionary<String, String>> = []
     
 //    enum CoreDataError: Error {
 //        case jsonWriteFailed
@@ -166,27 +166,27 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     @IBAction func submitButtonTap(_ sender: UIButton) {
     // print(hardwoodFloorPickerView.selectedRow(inComponent: 0))
     
-    let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
-        
-    print(returnedString)
-        
-        do {
-            
-            objArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString) as! Array<Dictionary<String, String>>
-            //print("Number of objects = \(objArray.count)")
-            
-        }
-        catch  {
-            print("Error = \(error)")
-        }
-      
-        let uprightArray = objArray.filter({$0["vacuumType"] == "upright"})
-        let canisterArray = objArray.filter({$0["vacuumType"] == "canister"})
-        let handHeldArray = objArray.filter({$0["vacuumType"] == "handHeld"})
-        
-        print("Uprights = \(uprightArray.count)")
-        print("Canisters = \(canisterArray.count)")
-        print("Handhelds = \(handHeldArray.count)")
+        //let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
+//        
+//        print("Returned String = \(returnedString)")
+//        
+//        do {
+//            
+//            priceRangeArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString) as! Array<Dictionary<String, String>>
+//            //print("Number of objects = \(objArray.count)")
+//            
+//        }
+//        catch  {
+//            print("Error = \(error)")
+//        }
+//      
+//        let uprightArray = priceRangeArray.filter({$0["vacuumType"] == "upright"})
+//        let canisterArray = priceRangeArray.filter({$0["vacuumType"] == "canister"})
+//        let handHeldArray = priceRangeArray.filter({$0["vacuumType"] == "handHeld"})
+//        
+//        print("Uprights = \(uprightArray.count)")
+//        print("Canisters = \(canisterArray.count)")
+//        print("Handhelds = \(handHeldArray.count)")
         
     }
     
@@ -300,10 +300,11 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
         if segue.identifier == "SegueToDetailVC" {
-            
+        let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
             if let destinationVC = segue.destination as? ResultTableViewController {
                 
-                destinationVC.customCell.totalNumLabel?.text = String(objArray.count)
+                destinationVC.finalString = returnedString
+                //destinationVC.customCell.totalNumLabel?.text =
                 
                 //let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
            
