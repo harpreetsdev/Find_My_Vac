@@ -131,65 +131,29 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         return returnString
     }
 
-//    func returnVacuumType(hardwood:Double, carpet:Double, pet:String, livingSpace:String) -> String {
-//        if total == total {
-//            total = hardwood + carpet}
-//        
-//        //self.pet = pet
-//        if petTextField.text! == "yes" {
-//            total += 20.0
-//        }
-//        if livingAreaTextField.text! == "Small" {
-//            total += 10
-//        } else if livingAreaTextField.text! == "Medium"{
-//            total += 30
-//        } else if livingAreaTextField.text! == "Large"{
-//            total += 70
-//        }
-//        if  vacuumType == vacuumType {
-//            if total < 135 {
-//                vacuumType = "Cheap ass vacuum range suggested you broke bastard"
-//            } else if total > 135 || total < 150 {
-//                vacuumType = "Mid range suggested, go for it."
-//            } else if total > 150 {
-//                vacuumType = "Large range suggested, you lucky bastard"
-//            }
-//        }
-//        
-//        return vacuumType!
-//    }
-//
     func addNumbers (a:Double, b:Double) -> Double {
        return a+b
     }
     
     @IBAction func submitButtonTap(_ sender: UIButton) {
-    // print(hardwoodFloorPickerView.selectedRow(inComponent: 0))
-    
-        //let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
-//        
-//        print("Returned String = \(returnedString)")
-//        
-//        do {
-//            
-//            priceRangeArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString) as! Array<Dictionary<String, String>>
-//            //print("Number of objects = \(objArray.count)")
-//            
-//        }
-//        catch  {
-//            print("Error = \(error)")
-//        }
-//      
-//        let uprightArray = priceRangeArray.filter({$0["vacuumType"] == "upright"})
-//        let canisterArray = priceRangeArray.filter({$0["vacuumType"] == "canister"})
-//        let handHeldArray = priceRangeArray.filter({$0["vacuumType"] == "handHeld"})
-//        
-//        print("Uprights = \(uprightArray.count)")
-//        print("Canisters = \(canisterArray.count)")
-//        print("Handhelds = \(handHeldArray.count)")
         
     }
     
+    
+    func returnPriceRangeArray()->Array<Dictionary<String, String>> {
+        
+        let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
+        do {
+            
+            priceRangeArray = try factoryInstance.getJSONArray(forJSONFile: "ProductData", forPredicate: returnedString) as! Array<Dictionary<String, String>>
+            //print("Number of objects = \(objArray.count)")
+            
+        }
+        catch  {
+            print("Error = \(error)")
+        }
+        return priceRangeArray
+    }
     //Mark: Picker view delegate and datasource methods.
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -300,25 +264,19 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
         if segue.identifier == "ToTableViewController" {
-        let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
+        
+            let finalArray = returnPriceRangeArray()
+            
+            let uprightArray = finalArray.filter({$0["vacuumType"] == "upright"})
+            let canisterArray = finalArray.filter({$0["vacuumType"] == "canister"})
+            let handHeldArray = finalArray.filter({$0["vacuumType"] == "handHeld"})
+
+            
             if let destinationVC = segue.destination as? ResultTableViewController {
                 
-                destinationVC.finalString = returnedString
-                //destinationVC.customCell.totalNumLabel?.text =
-                
-                //let num1 = NSString.init(string: hardwoodPercent.text!).doubleValue
-           
-              //let num2 = NSString.init(string: woodenFloorPercent.text!).doubleValue
-              //let  finalString = returnVacuumType(hardwood:num2, carpet:num1,pet:petTextField.text!,livingSpace:livingAreaTextField.text!)
-              //destinationVC.numberLabel.text = total.description
-              //destinationVC.textLabel.text = finalString
-                //self.prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
-                //print(finalString)
-                //print("TOTAL =\(total)")
-                
-            
-                 //
-                 //
+                destinationVC.uprightCount = uprightArray.count
+                destinationVC.canisterCount = canisterArray.count
+                destinationVC.handHeldCount = handHeldArray.count
                 
             }
 

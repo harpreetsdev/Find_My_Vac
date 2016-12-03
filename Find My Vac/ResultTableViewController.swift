@@ -11,6 +11,9 @@ import UIKit
 class ResultTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var finalString:String?
+    var uprightCount:Int?
+    var canisterCount:Int?
+    var handHeldCount:Int?
     var customCell = CustomResultCell()
     var factoryInstance : ServiceFactory?
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -65,22 +68,28 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         //guard let renderedCell = customCell else {}
         
-        customCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+        //customCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
         
         if tableView.tag == 1 {
+            customCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
+
             customCell.vacuumTypeLabel?.text = "UprightVacs"
-            customCell.totalNumLabel?.text = "10"
+            customCell.totalNumLabel?.text = String(describing: uprightCount!)
         }
         
         if tableView.tag == 2 {
-            customCell.vacuumTypeLabel?.text = "Canistervacuums1"
-            customCell.totalNumLabel?.text = "10"
+            customCell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as! CustomResultCell
+
+            customCell.vacuumTypeLabel?.text = "Canisters1"
+            customCell.totalNumLabel?.text = String(describing: canisterCount!)
 
         }
         
         if tableView.tag == 3 {
+            customCell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! CustomResultCell
+
             customCell.vacuumTypeLabel?.text = "Canistervacuums1"
-            customCell.totalNumLabel?.text = "10"
+            customCell.totalNumLabel?.text = String(describing: handHeldCount!)
         }
         
 //        switch tableView.tag {
@@ -118,7 +127,7 @@ class ResultTableViewController: UIViewController, UITableViewDelegate, UITableV
         case 1:
             //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
             
-            print("Tapped on the number \(tableView.tag) table")
+            print("Tapped on the table number \(tableView.tag)")
             
         case 2:
             //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomResultCell
