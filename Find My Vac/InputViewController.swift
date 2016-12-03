@@ -299,7 +299,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-        if segue.identifier == "SegueToDetailVC" {
+        if segue.identifier == "ToTableViewController" {
         let returnedString = calculateTotal(woodenPercent: hardwoodFloorPickerView.selectedRow(inComponent: 0), carpetPercent: carpetPickerView.selectedRow(inComponent: 0), pet: petPickerView.selectedRow(inComponent: 0), livingAreaSpace: livingAreaSizePickerView.selectedRow(inComponent: 0))
             if let destinationVC = segue.destination as? ResultTableViewController {
                 
